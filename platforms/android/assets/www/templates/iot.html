@@ -1,0 +1,46 @@
+<ion-view view-title="IoT">
+  <ion-content>
+    <ul class="card">
+        <a class="item" href="#">
+            Glucose concentration 
+        </a>
+        <div class="item range range-positive">
+            <input type="range" name="volume" min="100" max="300" ng-model="data.glucoseConcentration" ng-change="getGlucoseConcentration()">
+            <i class="icon ion-volume-high"></i>
+        </div>
+            <p> {{text}} {{data.glucoseConcentration}}</p>
+        </ul>
+
+    <ul class="card">
+        <a class="item" href="#">
+            Weight
+        </a>
+        <div class="item range range-positive">
+            <input type="range" name="flash" min="0" max="100" ng-model="weight">
+            <i class="icon ion-flash"></i>
+        </div>
+    </ul>
+
+    <ul class="card">
+        <a class="item" href="#">
+            Pulse Rate
+        </a>
+        <div class="item range range-positive">
+            <input type="range" name="flash" min="0" max="100" ng-model="pulseRate">
+            <i class="icon ion-flash"></i>
+        </div>
+    </ul>
+
+
+    <ul class="card">
+        <a class="item" href="#">
+            Systolic Presion
+        </a>
+        <div class="item range range-positive">
+            <input type="range" name="flash" min="0" max="100" ng-model="systolicPresion">
+            <i class="icon ion-flash"></i>
+        </div>
+    </ul>
+
+  </ion-content>
+</ion-view>

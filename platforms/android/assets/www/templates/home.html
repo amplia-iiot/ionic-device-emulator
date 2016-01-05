@@ -1,0 +1,129 @@
+<ion-view view-title="Home">
+  <ion-content>
+
+
+<!--********************-->
+<!-- ** Scan QR Code ** -->
+<!--********************-->      
+
+
+    <div class="item" href="#app/{{qr}}">
+      <button class="button button-block button-positive" ng-click = "scan()">
+        <i class="icon ion-qr-scanner"></i>
+         Scan QR Code
+      </button>
+      <p> {{qr}} </p>
+    </div>
+
+
+<!--**********************-->
+<!-- ** QR Information ** -->
+<!--**********************-->      
+
+
+    <ul class="card">
+      <div class="item item-divider">
+        QR Information
+    </div>
+
+      <label class="item item-input">
+        <span class="input-label">E-Mail</span>
+        <input type="text" placeholder="there is no email" ng-model = "email">
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">API-KEY</span>
+        <input type="text" placeholder="there is no api-key" ng-model = "apikey">
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Channels</span>
+        <input type="text" placeholder="there is no channels" ng-model = "channels">
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Organization</span>
+        <input type="text" placeholder="there is no organization" ng-model = "organization">
+      </label>
+
+    </ul>
+
+
+<!--******************-->
+<!-- ** Device Data ** -->
+<!--******************-->      
+
+
+    <ul class="card">
+
+      <div class="item item-divider">
+        Device Data
+      </div>
+
+      <label class="item item-input">
+        <span class="input-label">ID</span>
+        <input type="text" placeholder="there is no device ID" ng-model = "id">
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Custom ID</span>
+        <input type="text" placeholder="there is no device ID" ng-model = "customID">
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Template</span>
+        <input type="text" placeholder="there is no device ID" ng-model = "template">
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Type</span>
+        <input type="text" placeholder="there is no device ID" ng-model = "type">
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Specific Type</span>
+        <input type="text" placeholder="there is no device ID" ng-model = "specificType">
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Name</span>
+        <input type="text" placeholder="there is no device ID" ng-model = "name">
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Description</span>
+        <input type="text" placeholder="there is no device ID" ng-model = "description">
+      </label>
+
+    </ul>
+
+    <ul class="card">
+
+      <div class="item item-divider">
+        Admin
+      </div>
+
+      <label class="item item-input">
+        <span class="input-label">Organization</span>
+        <input type="text" placeholder="there is no device ID" ng-model = "organization">
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Channel</span>
+        <input type="text" placeholder="there is no device ID" ng-model = "channel">
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Admin. State</span>
+        <input type="text" placeholder="there is no device ID" ng-model = "administrativeState">
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Service Group</span>
+        <input type="text" placeholder="there is no device ID" ng-model = "serviceGroup">
+      </label>
+
+
+    </ul>
+  </ion-content>
+</ion-view>
