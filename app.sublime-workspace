@@ -4,6 +4,78 @@
 		"selected_items":
 		[
 			[
+				"user",
+				"userData"
+			],
+			[
+				"defaul",
+				"default_channel"
+			],
+			[
+				"lo",
+				"log"
+			],
+			[
+				"pro",
+				"promise"
+			],
+			[
+				"uri",
+				"uri_prefix"
+			],
+			[
+				"organiz",
+				"organization"
+			],
+			[
+				"crud",
+				"crudInfo"
+			],
+			[
+				"cru",
+				"crudInfo"
+			],
+			[
+				"s",
+				"stringify"
+			],
+			[
+				"amplia",
+				"amplia_rd"
+			],
+			[
+				"device",
+				"deviceCreated"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"f",
+				"function"
+			],
+			[
+				"de",
+				"device"
+			],
+			[
+				"get",
+				"getDmmInfo"
+			],
+			[
+				"g",
+				"guid"
+			],
+			[
+				"dmm",
+				"dmmInfo"
+			],
+			[
 				"volue",
 				"volumeRange"
 			],
@@ -34,44 +106,24 @@
 			[
 				"net",
 				"networkState"
-			],
-			[
-				"con",
-				"checkConnection"
-			],
-			[
-				"get",
-				"getUUID"
-			],
-			[
-				"fun",
-				"function"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
+			"file": "www/js/services.js",
+			"settings":
+			{
+				"buffer_size": 11418,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "www/js/controllers.js",
 			"settings":
 			{
-				"buffer_size": 1222,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/templates/home.html",
-			"settings":
-			{
-				"buffer_size": 3024,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/david/wkf/opengate-api-python-examples-master/device_south_iot.py",
-			"settings":
-			{
-				"buffer_size": 2410,
+				"buffer_size": 966,
 				"line_ending": "Unix"
 			}
 		},
@@ -79,7 +131,31 @@
 			"file": "www/js/app.js",
 			"settings":
 			{
-				"buffer_size": 1729,
+				"buffer_size": 1961,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/templates/config.html",
+			"settings":
+			{
+				"buffer_size": 1109,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/templates/home.html",
+			"settings":
+			{
+				"buffer_size": 2760,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/templates/dmm.html",
+			"settings":
+			{
+				"buffer_size": 8348,
 				"line_ending": "Unix"
 			}
 		},
@@ -87,7 +163,7 @@
 			"file": "www/index.html",
 			"settings":
 			{
-				"buffer_size": 919,
+				"buffer_size": 962,
 				"line_ending": "Unix"
 			}
 		},
@@ -95,7 +171,7 @@
 			"file": "www/templates/menu.html",
 			"settings":
 			{
-				"buffer_size": 921,
+				"buffer_size": 1015,
 				"line_ending": "Unix"
 			}
 		},
@@ -103,7 +179,7 @@
 			"file": "www/templates/iot.html",
 			"settings":
 			{
-				"buffer_size": 684,
+				"buffer_size": 1393,
 				"line_ending": "Unix"
 			}
 		}
@@ -122,9 +198,13 @@
 			[
 				"json",
 				"Set Syntax: JSON"
+			],
+			[
+				":w",
+				":w - Save"
 			]
 		],
-		"width": 392.0
+		"width": 467.0
 	},
 	"console":
 	{
@@ -151,8 +231,16 @@
 	],
 	"file_history":
 	[
-		"/home/david/wkf/ionic/app/www/templates/qrscanner.html",
 		"/home/david/wkf/ionic/app/www/templates/configuration.html",
+		"/home/david/wkf/ionic/deleted code/full get",
+		"/home/david/wkf/ionic/deleted code/qr-code",
+		"/home/david/wkf/ionic/deleted code/network battery post.js",
+		"/home/david/wkf/ionic/deleted code/ionic-app-deleted-code",
+		"/home/david/wkf/ionic-app-deleted-code",
+		"/home/david/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/david/wkf/ionic/app/www/templates/iot.html",
+		"/home/david/.config/sublime-text-3/Packages/User/HTML.sublime-settings",
+		"/home/david/wkf/ionic/app/www/templates/qrscanner.html",
 		"/home/david/wkf/app/www/js/services.js",
 		"/home/david/wkf/db.json",
 		"/home/david/wkf/app/platforms/android/res/xml/config.xml",
@@ -192,6 +280,55 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"postcru",
+			"link",
+			"\"device.uuid\"",
+			"user",
+			"device.uuid",
+			"sendCrudData",
+			"userdata",
+			"fillCrudDialog",
+			"postCrudInfo",
+			"createdevi",
+			"device.uuid",
+			"fillde",
+			"postCrudInfo",
+			"createDeviceDialog",
+			"device.",
+			"var userdata",
+			"userdata",
+			"getUserData",
+			"deleteDevice",
+			"fillCloudCrudInfo",
+			"service",
+			"fillCrudDialog",
+			"fillCloudCrudInfo",
+			"postCrudInfo",
+			"post",
+			"resolve",
+			"fillCloudCrudInfo",
+			"device.uu",
+			"Toast",
+			"toast",
+			"sendCrud",
+			"toast",
+			"//$cordovaToast",
+			"fillCloudCrudInfo",
+			"crudInfo",
+			"fillCloudCrudInfo",
+			"toas",
+			"putcrud",
+			"'",
+			"updatede",
+			"defaul",
+			"placeholder=\"there is no device ID\"",
+			"'",
+			"organiza",
+			"dmm",
+			"service",
+			"});\n",
+			"'",
+			"$scope",
 			"settings",
 			"icon",
 			"plugin",
@@ -203,6 +340,12 @@
 		"regex": false,
 		"replace_history":
 		[
+			"device.uuid",
+			"\"device.uuid\"",
+			"$cordovaToast",
+			"\"",
+			"",
+			"\""
 		],
 		"reverse": false,
 		"show_context": true,
@@ -213,114 +356,84 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 3,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "www/js/controllers.js",
+					"file": "www/js/services.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1222,
+						"buffer_size": 11418,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1130,
-								1130
+								4539,
+								4539
 							]
 						],
 						"settings":
 						{
+							"auto_name": "",
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 408.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "www/templates/home.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3024,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1862,
-								1862
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1009.0,
-						"zoom_level": 1.0
-					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "/home/david/wkf/opengate-api-python-examples-master/device_south_iot.py",
+					"buffer": 1,
+					"file": "www/js/controllers.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2410,
+						"buffer_size": 966,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								617,
+								617
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 255.0,
+						"translation.y": 153.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 2,
 					"file": "www/js/app.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1729,
+						"buffer_size": 1961,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								1067,
+								1067
 							]
 						],
 						"settings":
@@ -330,27 +443,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 51.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "www/index.html",
+					"buffer": 3,
+					"file": "www/templates/config.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 919,
+						"buffer_size": 1109,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								681,
-								681
+								399,
+								399
 							]
 						],
 						"settings":
@@ -363,30 +476,90 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "www/templates/menu.html",
+					"buffer": 4,
+					"file": "www/templates/home.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 921,
+						"buffer_size": 2760,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								654,
+								654
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "www/templates/dmm.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8348,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								165,
+								165
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "www/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 962,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								186,
+								186
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
@@ -397,12 +570,42 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "www/templates/iot.html",
-					"semi_transient": true,
+					"buffer": 7,
+					"file": "www/templates/menu.html",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 684,
+						"buffer_size": 1015,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								920,
+								920
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "www/templates/iot.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1393,
 						"regions":
 						{
 						},
@@ -423,7 +626,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 8,
 					"type": "text"
 				}
 			]
@@ -468,7 +671,7 @@
 	"project": "app.sublime-project",
 	"replace":
 	{
-		"height": 0.0
+		"height": 64.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -479,7 +682,19 @@
 		[
 			[
 				"",
-				"www/js/controllers.js"
+				"js/controllers.js"
+			],
+			[
+				"con",
+				"js/controllers.js"
+			],
+			[
+				"conr",
+				"js/controllers.js"
+			],
+			[
+				"ser",
+				"js/services.js"
 			]
 		],
 		"width": 0.0

@@ -39,6 +39,10 @@
                         {
                             "xml": "<feature name=\"BarcodeScanner\"><param name=\"android-package\" value=\"com.phonegap.plugins.barcodescanner.BarcodeScanner\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Toast\"><param name=\"android-package\" value=\"nl.xservices.plugins.Toast\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -592,6 +596,9 @@
         },
         "cordova-plugin-barcodescanner": {
             "PACKAGE_NAME": "com.ionicframework.app779438"
+        },
+        "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "com.ionicframework.app779438"
         }
     },
     "dependent_plugins": {},
@@ -667,6 +674,19 @@
             "clobbers": [
                 "cordova.plugins.barcodeScanner"
             ]
+        },
+        {
+            "file": "plugins/cordova-plugin-x-toast/www/Toast.js",
+            "id": "cordova-plugin-x-toast.Toast",
+            "pluginId": "cordova-plugin-x-toast",
+            "clobbers": [
+                "window.plugins.toast"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-x-toast/test/tests.js",
+            "id": "cordova-plugin-x-toast.tests",
+            "pluginId": "cordova-plugin-x-toast"
         }
     ],
     "plugin_metadata": {
@@ -678,6 +698,7 @@
         "ionic-plugin-keyboard": "1.0.8",
         "cordova-plugin-network-information": "1.1.0",
         "cordova-plugin-battery-status": "1.1.1",
-        "cordova-plugin-barcodescanner": "0.7.0"
+        "cordova-plugin-barcodescanner": "0.7.0",
+        "cordova-plugin-x-toast": "2.3.1"
     }
 }

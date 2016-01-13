@@ -1,78 +1,48 @@
-angular.module('starter.controllers', ['ngCordova', 'starter.services'])
+angular.module("starter.controllers", ["ngCordova", "starter.services"])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicPlatform) {
-
-})
-
-
-.controller('HomeCtrl', function($scope, $ionicPlatform,
-     $http, $cordovaBarcodeScanner) {
-   
-
-//QR SCANNER
-  $scope.scan = function(){
-    $ionicPlatform.ready(function() {
-        $cordovaBarcodeScanner
-        .scan()
-        .then(function(result) {
-
-          var qrString = result.text;
-          $scope.qr = qrString;
-
-          var qrJson = JSON.parse(qrString);
-          
-          $scope.email = qrJson.email;
-          $scope.apikey = qrJson.apikey;
-          $scope.channels = qrJson.channels;
-          $scope.organization = qrJson.organization;
-
-
-        }, function(error) {
-
-
-        });
-    });
-    $scope.scanResults = '';
-  };
-
-  $ionicPlatform.ready(function(){
-    $scope.id = device.uuid;
-    $scope.customID = device.uuid;
-    $scope.template = "default";
-    $scope.type = "gateway";
-    $scope.specificType = "CONCENTRATOR";
-    $scope.name = "default";
-    $scope.description = "Device for testing purposes";
-    
-    $scope.organization = "amplia_rd";
-    $scope.channel = "default_channel";
-    $scope.administrativeState = "ACTIVE";
-    $scope.serviceGroup = "emptyServiceGroup";
-
-
-
-  })
+.controller("AppCtrl", function($scope, $ionicModal, $timeout, $ionicPlatform) {
 
 })
 
 
-.controller('DmmCtrl', function($scope, $ionicPlatform, dmm) {
-  $ionicPlatform.ready(function(){
-    $scope.dmmInfo = dmm.getDmmInfo();
-    console.log(JSON.stringify($scope.dmmInfo, null, 2));
-  });
+.controller("HomeCtrl", function($scope, $ionicPlatform, $http,
+						service, $ionicPopup, $timeout, $cordovaToast) {
+
+
+
+	$scope.fillData = function(){
+		service.fillCrudDialog()
+		.then(function(data){
+			$scope.crudInfo = data;	
+		})
+		.catch(function(){
+			console.log("Error")
+		});
+	}; 
+
+	$scope.sendData = function(){
+		service.sendCrudData($scope.crudInfo);
+	}; 
+
+	$scope.deleteDevice = function(){
+		service.deleteDevice($scope.crudInfo);
+	}; 
+
 })
 
 
-.controller('IotCtrl', function($scope, $ionicPlatform) {
-/*  $scope.data = {glucoseConcentration: 20}
+.controller("DmmCtrl", function($scope, $ionicPlatform, $http, service) {
 
-  $scope.getGlucoseConcentration = function(rangeValue){
-    if($scope.glucoseConcentration< 20){
-      $scope.text = "+50";
-    }
-    else {
-      $scope.text = "-50";}
-  }*/
+	$ionicPlatform.ready(function(){
+		$scope.dmmInfo = service.fillDefaultDmmInfo();
+	});
+})
+
+.controller("IotCtrl", function($scope, $ionicPlatform) {
+
+})
+
+.controller("ConfigCtrl", function($scope, $ionicPlatform, service) {
+	$scope.userData = service.getUserData();
 
 })

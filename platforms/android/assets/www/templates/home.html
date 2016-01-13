@@ -1,59 +1,21 @@
 <ion-view view-title="Home">
   <ion-content>
 
-
-<!--********************-->
-<!-- ** Scan QR Code ** -->
-<!--********************-->      
-
-
-    <div class="item" href="#app/{{qr}}">
-      <button class="button button-block button-positive" ng-click = "scan()">
-        <i class="icon ion-qr-scanner"></i>
-         Scan QR Code
+ 
+    <div class="item">
+      <button class="button button-block button-positive" ng-click = "fillData()">
+        Fill Device Data
       </button>
-      <p> {{qr}} </p>
+      <button class="button button-block button-positive" ng-click = "sendData()">
+        Send Device Data
+      </button>      
+      <button class="button button-block button-assertive" ng-click = "deleteDevice()">
+        Delete Device
+      </button>
+
     </div>
 
-
-<!--**********************-->
-<!-- ** QR Information ** -->
-<!--**********************-->      
-
-
-    <ul class="card">
-      <div class="item item-divider">
-        QR Information
-    </div>
-
-      <label class="item item-input">
-        <span class="input-label">E-Mail</span>
-        <input type="text" placeholder="there is no email" ng-model = "email">
-      </label>
-
-      <label class="item item-input">
-        <span class="input-label">API-KEY</span>
-        <input type="text" placeholder="there is no api-key" ng-model = "apikey">
-      </label>
-
-      <label class="item item-input">
-        <span class="input-label">Channels</span>
-        <input type="text" placeholder="there is no channels" ng-model = "channels">
-      </label>
-
-      <label class="item item-input">
-        <span class="input-label">Organization</span>
-        <input type="text" placeholder="there is no organization" ng-model = "organization">
-      </label>
-
-    </ul>
-
-
-<!--******************-->
-<!-- ** Device Data ** -->
-<!--******************-->      
-
-
+<!--Device Data-->
     <ul class="card">
 
       <div class="item item-divider">
@@ -62,41 +24,41 @@
 
       <label class="item item-input">
         <span class="input-label">ID</span>
-        <input type="text" placeholder="there is no device ID" ng-model = "id">
+        <input type="text"  ng-model = "crudInfo.device.id">
       </label>
 
       <label class="item item-input">
         <span class="input-label">Custom ID</span>
-        <input type="text" placeholder="there is no device ID" ng-model = "customID">
+        <input type="text"  ng-model = "crudInfo.device.provision.customId[0]">
       </label>
 
       <label class="item item-input">
         <span class="input-label">Template</span>
-        <input type="text" placeholder="there is no device ID" ng-model = "template">
+        <input type="text"  ng-model = "crudInfo.device.provision.template">
       </label>
 
       <label class="item item-input">
         <span class="input-label">Type</span>
-        <input type="text" placeholder="there is no device ID" ng-model = "type">
+        <input type="text"  ng-model = "crudInfo.device.provision.type">
       </label>
 
       <label class="item item-input">
         <span class="input-label">Specific Type</span>
-        <input type="text" placeholder="there is no device ID" ng-model = "specificType">
+        <input type="text"  ng-model = "crudInfo.device.provision.specificType[0]">
       </label>
 
       <label class="item item-input">
         <span class="input-label">Name</span>
-        <input type="text" placeholder="there is no device ID" ng-model = "name">
+        <input type="text"  ng-model = "crudInfo.device.provision.name">
       </label>
 
       <label class="item item-input">
         <span class="input-label">Description</span>
-        <input type="text" placeholder="there is no device ID" ng-model = "description">
+        <input type="text"  ng-model = "crudInfo.device.provision.description[0]">
       </label>
-
     </ul>
 
+<!--Admin-->
     <ul class="card">
 
       <div class="item item-divider">
@@ -105,25 +67,23 @@
 
       <label class="item item-input">
         <span class="input-label">Organization</span>
-        <input type="text" placeholder="there is no device ID" ng-model = "organization">
+        <input type="text"  ng-model = "crudInfo.device.provision.admin.organization">
       </label>
 
       <label class="item item-input">
         <span class="input-label">Channel</span>
-        <input type="text" placeholder="there is no device ID" ng-model = "channel">
+        <input type="text"  ng-model = "crudInfo.device.provision.admin.channel">
       </label>
 
       <label class="item item-input">
         <span class="input-label">Admin. State</span>
-        <input type="text" placeholder="there is no device ID" ng-model = "administrativeState">
+        <input type="text"  ng-model = "crudInfo.device.provision.admin.administrativeState">
       </label>
 
       <label class="item item-input">
         <span class="input-label">Service Group</span>
-        <input type="text" placeholder="there is no device ID" ng-model = "serviceGroup">
+        <input type="text"  ng-model = "crudInfo.device.provision.admin.serviceGroup">
       </label>
-
-
     </ul>
   </ion-content>
 </ion-view>
