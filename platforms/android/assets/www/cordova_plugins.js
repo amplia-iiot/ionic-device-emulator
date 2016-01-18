@@ -98,7 +98,9 @@ module.exports.metadata =
     "cordova-plugin-network-information": "1.1.0",
     "cordova-plugin-battery-status": "1.1.1",
     "cordova-plugin-barcodescanner": "0.7.0",
-    "cordova-plugin-x-toast": "2.3.1"
+    "cordova-plugin-x-toast": "2.3.1",
+    "cordova-plugin-geolocation": "1.0.1",
+    "cordova-plugin-livereload": "1.0.0-dev"
 }
 // BOTTOM OF METADATA
 });

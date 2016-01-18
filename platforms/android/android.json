@@ -53,6 +53,14 @@
                         {
                             "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
                             "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
+                            "count": 1
                         }
                     ],
                     "/manifest/application": [
@@ -599,6 +607,12 @@
         },
         "cordova-plugin-x-toast": {
             "PACKAGE_NAME": "com.ionicframework.app779438"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.ionicframework.app779438"
+        },
+        "cordova-plugin-livereload": {
+            "PACKAGE_NAME": "com.ionicframework.app779438"
         }
     },
     "dependent_plugins": {},
@@ -699,6 +713,8 @@
         "cordova-plugin-network-information": "1.1.0",
         "cordova-plugin-battery-status": "1.1.1",
         "cordova-plugin-barcodescanner": "0.7.0",
-        "cordova-plugin-x-toast": "2.3.1"
+        "cordova-plugin-x-toast": "2.3.1",
+        "cordova-plugin-geolocation": "1.0.1",
+        "cordova-plugin-livereload": "1.0.0-dev"
     }
 }

@@ -24,8 +24,8 @@ angular.module("starter.services", ["ngCordova"])
                 "id": new Date().getTime(),
                 "device": {
                     "id": device.uuid,
-                    "name": "Virtual Device",
-                    "description": "Virtual Device for Testing 3",
+                    "name": device.model,
+                    "description": "Virtual Device",
                     "hardware": {
                         "serialnumber": device.uuid,
                         "manufacturer": {
@@ -41,7 +41,7 @@ angular.module("starter.services", ["ngCordova"])
                             "name": "BloodPressure",
                             "type": "FIRMWARE",
                             "version": "1.0",
-                            "date": "2012-09-11T13:02:41Z"
+                            "date": new Date().toISOString()
                         }
                     ],
                     "specificType": "METER",
@@ -128,6 +128,45 @@ angular.module("starter.services", ["ngCordova"])
         return crudInfo;    
     }
 
+    service.fillDefaultIotInfo = function (iot) {
+        var time = new Date().getTime();
+        iotInfo = {
+        "version": "1.0.0",
+        "datastreams": [
+            {
+                "id": "health.glucose.concentration",
+                "feed": "health",
+                "datapoints": [
+                    {"at": time, "value": iot.glucoseConcentration}
+                ]
+            },
+            {
+                "id": "health.bodycomposition.weight",
+                "feed": "health",
+                "datapoints": [
+                    {"at": time, "value": iot.weight}
+                ]
+            },
+            {
+                "id": "health.bloodpresure.pulserate",
+                "feed": "health",
+                "datapoints": [
+                    {"at": time, "value": iot.pulseRate}
+                ]
+            },
+            {
+                "id": "health.bloodpresure.systolic",
+                "feed": "health",
+                "datapoints": [
+                    {"at": time, "value": iot.systolicPresion}
+                ]
+            }
+        ]
+    }
+
+        return iotInfo;
+    }
+
 
 //**********************************************//
 //**************** CLOUD INFO ******************//
@@ -136,7 +175,9 @@ angular.module("starter.services", ["ngCordova"])
     service.fillCloudCrudInfo = function (defered){
         var userData = service.getUserData();
         var crudInfo;
-        var link = userData.uri + "/" + userData.organization + "/entities/devices/" + userData.id;
+        var link = "http://" + userData.opengate_host + ":" + userData.north_port + "/v70/provision/organizations/" 
+            + userData.organization + "/entities/devices/" + userData.id;
+
         var request = {
             url: link,
             method: "GET",
@@ -166,7 +207,8 @@ angular.module("starter.services", ["ngCordova"])
 
         var userData = service.getUserData();
 
-        var link = userData.uri + "/" + userData.organization + "/entities/devices";
+        var link = "http://" + userData.opengate_host + ":" + userData.north_port + "/v70/provision/organizations/" 
+            + userData.organization + "/entities/devices";
 
         var request = {
             url: link,
@@ -188,14 +230,6 @@ angular.module("starter.services", ["ngCordova"])
             });        
         }
 
-    service.postDmmInfo = function (dmmInfo) {
-
-    }
-
-    service.postIotInfo = function (iotInfo){
-
-    }
-
 
 //**********************************************//
 //********************* PUT ********************//
@@ -204,7 +238,9 @@ angular.module("starter.services", ["ngCordova"])
     service.putCrudInfo = function (crudInfo) {
 
         var userData = service.getUserData();
-        var link = userData.uri + "/" + userData.organization + "/entities/devices/" + userData.id;
+        var link = "http://" + userData.opengate_host + ":" + userData.north_port + "/v70/provision/organizations/" 
+            + userData.organization + "/entities/devices/" + userData.id;
+
         var request = {
             url: link,
             method: "PUT",
@@ -230,12 +266,27 @@ angular.module("starter.services", ["ngCordova"])
 //**********************************************//
 //****************** DELETE ********************//
 //**********************************************//
+    service.deleteDeviceDialog = function(){
 
-    service.deleteDevice = function (crudInfo){
+        var confirmPopup = $ionicPopup.confirm({
+            title: "Delete device",
+            template: "Do you want to delete this device?"
+        });
+
+        confirmPopup.then(function(res) {
+            if(res) {
+                service.deleteDevice();
+            } else {
+
+            }
+        });
+    }    
+
+    service.deleteDevice = function (){
 
         var userData = service.getUserData();
-
-        var link = userData.uri + "/" + userData.organization + "/entities/devices/" + userData.id;
+        var link = "http://" + userData.opengate_host + ":" + userData.north_port + "/v70/provision/organizations/" 
+            + userData.organization + "/entities/devices/" + userData.id;
 
         var request = {
             url: link,
@@ -262,7 +313,9 @@ angular.module("starter.services", ["ngCordova"])
     service.sendCrudData = function (crudInfo){
 
         var userData = service.getUserData();
-        var link = userData.uri + "/" + userData.organization + "/entities/devices/" + userData.id;
+        var link = "http://" + userData.opengate_host + ":" + userData.north_port + "/v70/provision/organizations/" 
+            + userData.organization + "/entities/devices/" + userData.id;
+
         var request = {
             url: link,
             method: "GET",
@@ -358,12 +411,70 @@ angular.module("starter.services", ["ngCordova"])
             "apikey": "925f11cc-2b25-4cc1-a076-6a2df9472e57",
             "channels": "default_channel",
             "organization": "amplia_rd",
-            "uri": "http://cloud.opengate.es:25281/v70/provision/organizations",     
+            "opengate_host": "cloud.opengate.es",
+            "north_port": "25281",
+            "south_port": "9955",
             "id": device.uuid
         };        
 
         return userData;
     }
+
+
+
+    service.postDmmData = function (dmmInfo) {
+
+        var userData = service.getUserData();
+        var link = "http://" + userData.opengate_host + ":" + userData.south_port 
+            + "/v70/devices/" + userData.id + "/collect/dmm";
+
+        var request = {
+            url: link,
+            method: "POST",
+            data: dmmInfo,
+            headers: {
+              "X-ApiKey": userData.apikey,
+              "Content-Type": "application/json"
+            }
+        };
+        $http(request)
+            .success(function (data, status, headers, config){
+               $cordovaToast.show("Device updated ", "long", "center")
+
+            })
+            .error(function (data, status, headers, config){
+              $cordovaToast.show("Cannot update the device", "long", "center")
+
+            });
+        
+        }
+
+
+    service.sendIotInfo = function (iotInfo){
+
+        var userData = service.getUserData();
+        var link = "http://" + userData.opengate_host + ":" + userData.south_port 
+            + "/v70/devices/" + userData.id + "/collect/iot";
+        var request = {
+            url: link,
+            method: "POST",
+            data: iotInfo,
+            headers: {
+              "X-ApiKey": userData.apikey,
+              "Content-Type": "application/json"
+            }
+        };
+        $http(request)
+            .success(function (data, status, headers, config){
+                $cordovaToast.show(JSON.stringify(status), "long", "center");
+
+            })
+            .error(function (data, status, headers, config){
+                $cordovaToast.show(JSON.stringify(status), "long", "center");
+
+            });
+    }
+
 
     return service;
 

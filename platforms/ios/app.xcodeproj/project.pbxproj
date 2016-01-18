@@ -59,6 +59,8 @@
 		BB839EF97486408699FE3754 /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 0942B1D2B3564A06ADDD4A1C /* Toast.m */; };
 		1B8F1AA5D18C4B77BD5D59F7 /* IonicKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F3B1EECEC48649C2B6AE4 /* IonicKeyboard.m */; };
 		BB46940A232E4CBC850210B6 /* UIWebViewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F368EFD376D49069022AB38 /* UIWebViewExtension.m */; };
+		E3106F5747E34A95989B9443 /* CDVLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F751601F5D443C583DEBCFE /* CDVLocation.m */; };
+		36FE61FFF8D049C3B13C539D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D23EC7D6F954202AB1A0BF9 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,6 +159,9 @@
 		5F368EFD376D49069022AB38 /* UIWebViewExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIWebViewExtension.m"; path = "ionic-plugin-keyboard/UIWebViewExtension.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		12A0E46F07C64978B4A19F47 /* IonicKeyboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "IonicKeyboard.h"; path = "ionic-plugin-keyboard/IonicKeyboard.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		D274AD6D33B84201BBAE16DB /* UIWebViewExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIWebViewExtension.h"; path = "ionic-plugin-keyboard/UIWebViewExtension.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		9F751601F5D443C583DEBCFE /* CDVLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVLocation.m"; path = "cordova-plugin-geolocation/CDVLocation.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		A6F171AB0C0F4930A88A6E9D /* CDVLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVLocation.h"; path = "cordova-plugin-geolocation/CDVLocation.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		2D23EC7D6F954202AB1A0BF9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "CoreLocation.framework"; path = "System/Library/Frameworks/CoreLocation.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +178,7 @@
 				D0DCFC55B4DE40AA8B53438B /* CoreVideo.framework in Frameworks */,
 				051AE9D7901F41C6B60DFB98 /* QuartzCore.framework in Frameworks */,
 				589ABE34E97646CB88B4661D /* SystemConfiguration.framework in Frameworks */,
+				36FE61FFF8D049C3B13C539D /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,6 +257,7 @@
 				192D395548E84D7195ED1409 /* CoreVideo.framework */,
 				9821B930C0664458964C33FD /* QuartzCore.framework */,
 				0A05EE8861D8413AA8B0F492 /* SystemConfiguration.framework */,
+				2D23EC7D6F954202AB1A0BF9 /* CoreLocation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -293,6 +300,8 @@
 				5F368EFD376D49069022AB38 /* UIWebViewExtension.m */,
 				12A0E46F07C64978B4A19F47 /* IonicKeyboard.h */,
 				D274AD6D33B84201BBAE16DB /* UIWebViewExtension.h */,
+				9F751601F5D443C583DEBCFE /* CDVLocation.m */,
+				A6F171AB0C0F4930A88A6E9D /* CDVLocation.h */,
 			);
 			name = Plugins;
 			path = "app/Plugins";
@@ -492,6 +501,7 @@
 				BB839EF97486408699FE3754 /* Toast.m in Sources */,
 				1B8F1AA5D18C4B77BD5D59F7 /* IonicKeyboard.m in Sources */,
 				BB46940A232E4CBC850210B6 /* UIWebViewExtension.m in Sources */,
+				E3106F5747E34A95989B9443 /* CDVLocation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,44 +1,44 @@
 <ion-view view-title="IoT">
   <ion-content>
+
+    <div class="item">
+      <button class="button button-block button-positive" ng-click = "updateData()">
+        Send IoT Data
+      </button>      
+    </div>
+
+
     <ul class="card">
-        <a class="item" href="#">
+        <div class="item item-divider">
             Glucose concentration 
-        </a>
-        <div class="item range range-positive">
-            <input type="range" name="volume" min="100" max="300" ng-model="data.glucoseConcentration" ng-change="getGlucoseConcentration()">
-            <i class="icon ion-volume-high"></i>
         </div>
-            <p> {{text}} {{data.glucoseConcentration}}</p>
-        </ul>
-
-    <ul class="card">
-        <a class="item" href="#">
+        <div class="item range range-positive">
+            <input type="range" name="glucoseConcentration" min="100" max="300" ng-model="iotInfo.glucoseConcentration">
+            <p>{{iotInfo.glucoseConcentration}}</p>
+        </div>
+        
+        <div class="item item-divider">
             Weight
-        </a>
-        <div class="item range range-positive">
-            <input type="range" name="flash" min="0" max="100" ng-model="weight">
-            <i class="icon ion-flash"></i>
         </div>
-    </ul>
+        <div class="item range range-positive">
+            <input type="range" name="weight" min="0" max="100" ng-model="iotInfo.weight">
+            <p>{{iotInfo.weight}}</p>
+        </div>
 
-    <ul class="card">
-        <a class="item" href="#">
+        <div class="item item-divider">
             Pulse Rate
-        </a>
-        <div class="item range range-positive">
-            <input type="range" name="flash" min="0" max="100" ng-model="pulseRate">
-            <i class="icon ion-flash"></i>
         </div>
-    </ul>
-
-
-    <ul class="card">
-        <a class="item" href="#">
-            Systolic Presion
-        </a>
         <div class="item range range-positive">
-            <input type="range" name="flash" min="0" max="100" ng-model="systolicPresion">
-            <i class="icon ion-flash"></i>
+            <input type="range" name="pulseRate" min="0" max="100" ng-model="iotInfo.pulseRate">
+            <p>{{iotInfo.pulseRate}}</p>
+        </div>
+
+        <div class="item item-divider">
+            Systolic Presion
+        </div>
+        <div class="item range range-positive">
+            <input type="range" name="systolicPresion" min="0" max="100" ng-model="iotInfo.systolicPresion">
+            <p>{{iotInfo.systolicPresion}}</p>
         </div>
     </ul>
 

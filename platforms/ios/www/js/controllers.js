@@ -5,16 +5,19 @@ angular.module("starter.controllers", ["ngCordova", "starter.services"])
 })
 
 
-.controller("HomeCtrl", function($scope, $ionicPlatform, $http, $cordovaBarcodeScanner,
+.controller("HomeCtrl", function($scope, $ionicPlatform, $http,
 						service, $ionicPopup, $timeout, $cordovaToast) {
 
-	$ionicPlatform.ready(function(){
-		//$scope.crudInfo = service.fillDefaultCrudInfo();
 
-	})
 
 	$scope.fillData = function(){
-		$scope.crudInfo = service.fillCrudData();
+		service.fillCrudDialog()
+		.then(function(data){
+			$scope.crudInfo = data;	
+		})
+		.catch(function(){
+			console.log("Error")
+		});
 	}; 
 
 	$scope.sendData = function(){
@@ -22,20 +25,39 @@ angular.module("starter.controllers", ["ngCordova", "starter.services"])
 	}; 
 
 	$scope.deleteDevice = function(){
-
+		service.deleteDevice($scope.crudInfo);
 	}; 
 
-
 })
 
 
-.controller("DmmCtrl", function($scope, $ionicPlatform, $http, service) {
+.controller("DmmCtrl", function($scope, $ionicPlatform, $http, $cordovaGeolocation, service) {
 
-	$ionicPlatform.ready(function(){
+	$scope.refreshData = function(){
 		$scope.dmmInfo = service.fillDefaultDmmInfo();
-	});
+	}; 
+
+	$scope.updateData = function(){
+		$scope.dmmInfo = service.fillDefaultDmmInfo();
+		service.postDmmData($scope.dmmInfo);
+	  
+	}; 
+
 })
 
-.controller("IotCtrl", function($scope, $ionicPlatform) {
+
+.controller("IotCtrl", function($scope, $ionicPlatform, service) {
+
+	$scope.updateData = function(){
+		//service.sendIotInfo($scope.iotInfo);
+		$scope.iotInfo = service.fillDefaultIotInfo();
+		$cordovaToast.show(JSON.stringify(iotInfo), "long", "center");
+
+	}
+})
+
+.controller("ConfigCtrl", function($scope, $ionicPlatform, service) {
+
+	$scope.userData = service.getUserData();
 
 })

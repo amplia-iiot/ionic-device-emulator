@@ -1,6 +1,6 @@
 angular.module("starter.services", ["ngCordova"])
 
-.factory("service", function ($http, $cordovaToast, $ionicPopup, $timeout) {
+.factory("service", function ($http, $cordovaToast, $q, $ionicPopup, $timeout, $cordovaBarcodeScanner) {
     
     service = {};
 
@@ -12,7 +12,10 @@ angular.module("starter.services", ["ngCordova"])
         return _p8() + _p8(true) + _p8(true) + _p8();
     }
 
-/////////////////////////////////////////////////////
+
+//**********************************************//
+//*************** DEFAULT INFO *****************//
+//**********************************************//
 
     service.fillDefaultDmmInfo = function () {
 
@@ -20,11 +23,11 @@ angular.module("starter.services", ["ngCordova"])
             "event": {
                 "id": new Date().getTime(),
                 "device": {
-                    "id": "device.uuid",
-                    "name": "Virtual Device",
-                    "description": "Virtual Device for Testing 3",
+                    "id": device.uuid,
+                    "name": device.model,
+                    "description": "Virtual Device",
                     "hardware": {
-                        "serialnumber": "device.uuid",
+                        "serialnumber": device.uuid,
                         "manufacturer": {
                             "name": "amplia)))",
                             "oui": "41-B9-72"
@@ -38,7 +41,7 @@ angular.module("starter.services", ["ngCordova"])
                             "name": "BloodPressure",
                             "type": "FIRMWARE",
                             "version": "1.0",
-                            "date": "2012-09-11T13:02:41Z"
+                            "date": new Date().toISOString()
                         }
                     ],
                     "specificType": "METER",
@@ -100,7 +103,6 @@ angular.module("starter.services", ["ngCordova"])
     service.fillDefaultCrudInfo = function () {
 
         var id = device.uuid;
-
         crudInfo = {
             "device": {
                 "id": id,
@@ -124,60 +126,125 @@ angular.module("starter.services", ["ngCordova"])
         
         };
         return crudInfo;    
-    
     }
 
-    service.fillDefaultIotInfo = function (){
+    service.fillDefaultIotInfo = function () {
+
+        iotInfo = {
+            "datastreams" : [
+                {
+                    "name" : "health.bloodPresure.systolic",
+                    "datapoints":[
+                        {"at":14319689023,"value":120},
+                        {"at":14319689026,"value":119},
+                        {"at":14319689029,"value":121},
+                        {"at":14319689032,"value":120}
+                    ]
+                },
+                {
+                    "name" : "health.bloodPresure.diastolic",
+                    "datapoints":[
+                        {"at":14319689023,"value":80},
+                        {"at":14319689026,"value":79},
+                        {"at":14319689029,"value":78},
+                        {"at":14319689032,"value":80}
+                    ]
+                },
+                {
+                    "name" : "health.bloodPresure.pulseRate",
+                    "datapoints":[
+                        {"at":14319689023,"value":60},
+                        {"at":14319689026,"value":65},
+                        {"at":14319689029,"value":70},
+                        {"at":14319689032,"value":58}
+                    ]
+                }
+            ]
+        }
+
+        return iotInfo;
+    }
+
+
+//**********************************************//
+//**************** CLOUD INFO ******************//
+//**********************************************//
+
+    service.fillCloudCrudInfo = function (defered){
+        var userData = service.getUserData();
+        var crudInfo;
+        var link = "http://" + userData.opengate_host + ":" + userData.north_port + "/v70/provision/organizations/" 
+            + userData.organization + "/entities/devices/" + userData.id;
+
+        var request = {
+            url: link,
+            method: "GET",
+            headers: {
+              "X-ApiKey": userData.apikey,
+            }
+        };
+
+        $http(request)
+            .success(function (data, status, headers, config){ 
+                defered.resolve(data);
+              $cordovaToast.show("Device filled", "long", "center")
+            })
+            .error(function (data, status, headers, config){
+                defered.reject(data);
+              $cordovaToast.show("Cannot fill the device", "long", "center")
+            });
 
     }
 
-/////////////////////////////////////////////////////
-    
+
+//**********************************************//
+//******************** POST ********************//
+//**********************************************//
+
     service.postCrudInfo = function (crudInfo) {
 
-        var link = "http://cloud.opengate.es:25281/v70/provision/organizations/amplia_rd/entities/devices";
+        var userData = service.getUserData();
+
+        var link = "http://" + userData.opengate_host + ":" + userData.north_port + "/v70/provision/organizations/" 
+            + userData.organization + "/entities/devices";
+
         var request = {
             url: link,
             method: "POST",
             data: crudInfo,
             headers: {
-              "X-ApiKey": "925f11cc-2b25-4cc1-a076-6a2df9472e57",
+              "X-ApiKey": userData.apikey,
               "Content-Type": "application/json"
             }
         };
         $http(request)
             .success(function (data, status, headers, config){ 
-              $cordovaToast.show("Created device", "long", "center")
+              $cordovaToast.show("Device created", "long", "center")
 
             })
             .error(function (data, status, headers, config){
               $cordovaToast.show("Cannot create the device", "long", "center")
 
-            });
-        
+            });        
         }
 
-    service.postDmmInfo = function (dmmInfo) {
 
-    }
-
-    service.postIotInfo = function (iotInfo){
-
-    }
-
-
-/////////////////////////////////////////////////////
-
+//**********************************************//
+//********************* PUT ********************//
+//**********************************************//
 
     service.putCrudInfo = function (crudInfo) {
 
-        var link = "http://cloud.opengate.es:25281/v70/provision/organizations/amplia_rd/entities/devices/" + crudInfo.device.id;
+        var userData = service.getUserData();
+        var link = "http://" + userData.opengate_host + ":" + userData.north_port + "/v70/provision/organizations/" 
+            + userData.organization + "/entities/devices/" + userData.id;
+
         var request = {
             url: link,
             method: "PUT",
             data: crudInfo,
             headers: {
-              "X-ApiKey": "925f11cc-2b25-4cc1-a076-6a2df9472e57",
+              "X-ApiKey": userData.apikey,
               "Content-Type": "application/json"
             }
         };
@@ -194,16 +261,49 @@ angular.module("starter.services", ["ngCordova"])
         }
 
 
-/////////////////////////////////////////////////////
+//**********************************************//
+//****************** DELETE ********************//
+//**********************************************//
+
+    service.deleteDevice = function (crudInfo){
+
+        var userData = service.getUserData();
+        var link = "http://" + userData.opengate_host + ":" + userData.north_port + "/v70/provision/organizations/" 
+            + userData.organization + "/entities/devices/" + userData.id;
+
+        var request = {
+            url: link,
+            method: "DELETE",
+            headers: {
+              "X-ApiKey": userData.apikey,
+            }
+        };
+        $http(request)
+            .success(function (data, status, headers, config){ 
+              $cordovaToast.show("Device deleted", "long", "center")
+            })
+            .error(function (data, status, headers, config){
+            });
+    }
+
+
+
+//**********************************************//
+//*****************            *****************//
+//**********************************************//
+
 
     service.sendCrudData = function (crudInfo){
 
-        var link = "http://cloud.opengate.es:25281/v70/provision/organizations/amplia_rd/entities/devices/" + crudInfo.device.id;
+        var userData = service.getUserData();
+        var link = "http://" + userData.opengate_host + ":" + userData.north_port + "/v70/provision/organizations/" 
+            + userData.organization + "/entities/devices/" + userData.id;
+
         var request = {
             url: link,
             method: "GET",
             headers: {
-              "X-ApiKey": "925f11cc-2b25-4cc1-a076-6a2df9472e57",
+              "X-ApiKey": userData.apikey,
             }
         };
         $http(request)
@@ -215,14 +315,20 @@ angular.module("starter.services", ["ngCordova"])
                 }
             })
             .error(function (data, status, headers, config){
+                $cordovaToast.show("error", "long", "center")
             });
     }
+
+
+//**********************************************//
+//******************* DIALOGS ******************//
+//**********************************************//
 
     service.createDeviceDialog = function(crudInfo){
 
         var confirmPopup = $ionicPopup.confirm({
             title: "Device not found",
-            template: "This device isn\"t created yet, do you want to create it with the default data?"
+            template: "This device isn\'t created yet, do you want to create it with the default data?"
         });
 
         confirmPopup.then(function(res) {
@@ -250,8 +356,12 @@ angular.module("starter.services", ["ngCordova"])
         });
     }
 
-    service.fillCrudData = function (){
-        crudInfo = {};
+    service.fillCrudDialog = function (){
+
+        var defered = $q.defer();
+        var promise = defered.promise;
+
+
       var myPopup = $ionicPopup.show({
         template: "Do you want to use the default data or the cloud data?",
         title: "Fill crud data",
@@ -259,21 +369,71 @@ angular.module("starter.services", ["ngCordova"])
           { text: "Default",
             type: "button-positive",
             onTap: function(e) {
-                crudInfo = service.fillDefaultCrudInfo();
-                $cordovaToast.show(JSON.stringify(crudInfo), "long", "center")
+                var crudInfo = service.fillDefaultCrudInfo();
+                defered.resolve(crudInfo)
             } 
         },
           {
             text: "Cloud",
             type: "button-positive",
             onTap: function(e) {
-
+                var crudInfo = service.fillCloudCrudInfo(defered);
             }
           }
         ]
       });
 
-      return crudInfo;
+      return promise;
+
+    }
+
+    service.getUserData = function(){
+
+        userData = {
+            "email": "david.robles@amplia.es",
+            "apikey": "925f11cc-2b25-4cc1-a076-6a2df9472e57",
+            "channels": "default_channel",
+            "organization": "amplia_rd",
+            "opengate_host": "cloud.opengate.es",
+            "north_port": "25281",
+            "south_port": "9955",
+            "id": device.uuid
+        };        
+
+        return userData;
+    }
+
+
+
+    service.postDmmData = function (dmmInfo) {
+
+        var userData = service.getUserData();
+        var link = "http://" + userData.opengate_host + ":" + userData.south_port 
+            + "/v70/devices/" + userData.id + "/collect/dmm";
+
+        var request = {
+            url: link,
+            method: "POST",
+            data: dmmInfo,
+            headers: {
+              "X-ApiKey": userData.apikey,
+              "Content-Type": "application/json"
+            }
+        };
+        $http(request)
+            .success(function (data, status, headers, config){
+               $cordovaToast.show("Device updated ", "long", "center")
+
+            })
+            .error(function (data, status, headers, config){
+              $cordovaToast.show("Cannot update the device", "long", "center")
+
+            });
+        
+        }
+
+    service.sendIotInfo = function (iotInfo){
+        $cordovaToast.show(JSON.stringify(iotInfo), "long", "center")
 
     }
 

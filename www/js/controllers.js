@@ -25,24 +25,44 @@ angular.module("starter.controllers", ["ngCordova", "starter.services"])
 	}; 
 
 	$scope.deleteDevice = function(){
-		service.deleteDevice($scope.crudInfo);
+		service.deleteDeviceDialog();
 	}; 
 
 })
 
 
-.controller("DmmCtrl", function($scope, $ionicPlatform, $http, service) {
+.controller("DmmCtrl", function($scope, $ionicPlatform, $http, $cordovaGeolocation, service) {
 
-	$ionicPlatform.ready(function(){
+	$scope.refreshData = function(){
 		$scope.dmmInfo = service.fillDefaultDmmInfo();
-	});
+	}; 
+
+	$scope.updateData = function(){
+		$scope.dmmInfo = service.fillDefaultDmmInfo();
+		service.postDmmData($scope.dmmInfo);
+	  
+	}; 
+
 })
 
-.controller("IotCtrl", function($scope, $ionicPlatform) {
 
+.controller("IotCtrl", function($scope, $ionicPlatform, service) {
+	$scope.iot = {
+		"glucoseConcentration": 250, 
+		"weight": 54,
+		"pulseRate": 42,
+		"systolicPresion": 62
+	};
+
+	$scope.sendIotData = function(){
+		$scope.iotInfo = service.fillDefaultIotInfo($scope.iot);
+		service.sendIotInfo($scope.iotInfo);
+
+	}
 })
 
 .controller("ConfigCtrl", function($scope, $ionicPlatform, service) {
+
 	$scope.userData = service.getUserData();
 
 })
