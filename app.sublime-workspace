@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"cordo",
+				"cordovaBarcodeScanner"
+			],
+			[
+				"delete",
+				"deleteDevice"
+			],
+			[
+				"cordova",
+				"cordovaGeolocation"
+			],
+			[
+				"open",
+				"opengate_host"
+			],
+			[
 				"user",
 				"userData"
 			],
@@ -112,10 +128,18 @@
 	"buffers":
 	[
 		{
+			"file": "www/templates/config.html",
+			"settings":
+			{
+				"buffer_size": 1707,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "www/js/services.js",
 			"settings":
 			{
-				"buffer_size": 11418,
+				"buffer_size": 14922,
 				"line_ending": "Unix"
 			}
 		},
@@ -123,23 +147,23 @@
 			"file": "www/js/controllers.js",
 			"settings":
 			{
-				"buffer_size": 966,
+				"buffer_size": 2136,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "www/js/app.js",
+			"file": "www/templates/iot.html",
 			"settings":
 			{
-				"buffer_size": 1961,
+				"buffer_size": 1422,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "www/templates/config.html",
+			"file": "www/templates/dmm.html",
 			"settings":
 			{
-				"buffer_size": 1109,
+				"buffer_size": 8486,
 				"line_ending": "Unix"
 			}
 		},
@@ -152,10 +176,10 @@
 			}
 		},
 		{
-			"file": "www/templates/dmm.html",
+			"file": "www/js/app.js",
 			"settings":
 			{
-				"buffer_size": 8348,
+				"buffer_size": 1961,
 				"line_ending": "Unix"
 			}
 		},
@@ -172,14 +196,6 @@
 			"settings":
 			{
 				"buffer_size": 1015,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/templates/iot.html",
-			"settings":
-			{
-				"buffer_size": 1393,
 				"line_ending": "Unix"
 			}
 		}
@@ -225,9 +241,9 @@
 	},
 	"expanded_folders":
 	[
-		"/home/david/wkf/ionic/app/www",
-		"/home/david/wkf/ionic/app/www/js",
-		"/home/david/wkf/ionic/app/www/templates"
+		"/home/david/wkf/ionic-device-emulator/www",
+		"/home/david/wkf/ionic-device-emulator/www/js",
+		"/home/david/wkf/ionic-device-emulator/www/templates"
 	],
 	"file_history":
 	[
@@ -280,6 +296,30 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"log",
+			"'",
+			"postcrud",
+			"createde",
+			"fillcloud",
+			"filldefaultcr",
+			"iot",
+			"iotData",
+			"dmmdata",
+			"putDmmData",
+			"fillCloudDmmInfo",
+			"fillCloudDmmInfo		",
+			"fillCloudDmmInfo",
+			"fillDmmDialog",
+			"putcrud",
+			"devicedialog",
+			"filldefaultdmm",
+			"\n        ",
+			"uri",
+			"device update",
+			"error",
+			"fill",
+			"send",
+			"uri",
 			"postcru",
 			"link",
 			"\"device.uuid\"",
@@ -340,6 +380,9 @@
 		"regex": false,
 		"replace_history":
 		[
+			"\"",
+			"iotInfo",
+			"port",
 			"device.uuid",
 			"\"device.uuid\"",
 			"$cordovaToast",
@@ -356,34 +399,34 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "www/js/services.js",
+					"file": "www/templates/config.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11418,
+						"buffer_size": 1707,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4539,
-								4539
+								94,
+								94
 							]
 						],
 						"settings":
 						{
-							"auto_name": "",
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 408.0,
+						"translation.y": 702.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -391,19 +434,50 @@
 				},
 				{
 					"buffer": 1,
-					"file": "www/js/controllers.js",
+					"file": "www/js/services.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 966,
+						"buffer_size": 14922,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								617,
-								617
+								13231,
+								13231
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 268.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "www/js/controllers.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2136,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1658,
+								1658
 							]
 						],
 						"settings":
@@ -413,57 +487,27 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 153.0,
+						"translation.y": 918.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "www/js/app.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1961,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1067,
-								1067
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 51.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "www/templates/config.html",
+					"file": "www/templates/iot.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1109,
+						"buffer_size": 1422,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								399,
-								399
+								669,
+								669
 							]
 						],
 						"settings":
@@ -476,11 +520,41 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
 					"buffer": 4,
+					"file": "www/templates/dmm.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8486,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								393,
+								393
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
 					"file": "www/templates/home.html",
 					"semi_transient": false,
 					"settings":
@@ -492,8 +566,8 @@
 						"selection":
 						[
 							[
-								654,
-								654
+								434,
+								434
 							]
 						],
 						"settings":
@@ -503,44 +577,44 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 102.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "www/templates/dmm.html",
+					"buffer": 6,
+					"file": "www/js/app.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8348,
+						"buffer_size": 1961,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								165,
-								165
+								1431,
+								1431
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 648.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 7,
 					"file": "www/index.html",
 					"semi_transient": false,
 					"settings":
@@ -566,11 +640,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 8,
 					"file": "www/templates/menu.html",
 					"semi_transient": false,
 					"settings":
@@ -596,37 +670,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "www/templates/iot.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1393,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
+					"stack_index": 6,
 					"type": "text"
 				}
 			]

@@ -61,8 +61,36 @@ angular.module("starter.controllers", ["ngCordova", "starter.services"])
 	}
 })
 
-.controller("ConfigCtrl", function($scope, $ionicPlatform, service) {
+.controller("ConfigCtrl", function($scope, $ionicPlatform, service, $cordovaBarcodeScanner) {
 
-	$scope.userData = service.getUserData();
+	//$scope.userData = service.getUserData();
+
+  $scope.scan = function(){
+    $ionicPlatform.ready(function() {
+        $cordovaBarcodeScanner
+        .scan()
+        .then(function(result) {
+
+          var qrString = result.text;
+
+          var qrJson = JSON.parse(qrString);
+	          
+	        $scope.userData = {
+	            "email": qrJson.email,
+	            "apikey": qrJson.apikey,
+	            "channels": qrJson.channels,
+	            "organization": qrJson.organization,
+	            "opengate_host": qrJson.opengate_host,
+	            "north_port": qrJson.north_port,
+	            "south_port": qrJson.south_port,
+	            "id": device.uuid
+	            //"id": qrJson.id
+	        };        
+
+        }, function(error) { });
+    });
+    $scope.scanResults = "";
+  };
+
 
 })
