@@ -96,28 +96,11 @@ angular.module("starter.dmm")
 
     }
 
-    service.getUserData = function(){
-
-        userData = {
-            "email": "david.robles@amplia.es",
-            "apikey": "925f11cc-2b25-4cc1-a076-6a2df9472e57",
-            "channel": "default_channel",
-            "organization": "amplia_rd",
-            "host": "cloud.opengate.es",
-            "north_port": "25281",
-            "south_port": "9955",
-        };        
-
-        return userData;
-    }
 
     service.postDmmData = function (dmmInfo, userData) {
 
         var link = "http://" + userData.host + ":" + userData.south_port 
             + "/v70/devices/" + device.uuid + "/collect/dmm";
-        $cordovaToast.show(link, "short", "center")
-        $cordovaToast.show(userData, "short", "center")
-        $cordovaToast.show(userData.apikey, "short", "center")
 
         var request = {
             url: link,
