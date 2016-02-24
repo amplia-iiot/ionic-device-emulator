@@ -1,7 +1,13 @@
 "use strict";
 
 angular.module("starter.config")
-.controller("configController", function($scope, $ionicPlatform, configService, services, $cordovaBarcodeScanner, $cordovaToast) {
+.controller("configController", function(
+   $scope
+  ,$ionicPlatform
+  ,configService
+  ,services
+  ,$cordovaBarcodeScanner
+  ,$cordovaToast) {
    
 
 
@@ -13,8 +19,7 @@ angular.module("starter.config")
     })
     .catch(function(){
       console.log("Error")
-      $cordovaToast.show("error", "long", "center")
-
+      $cordovaToast.show("error", "short", "center")
     });
 
     $ionicPlatform.ready(function() {
@@ -33,7 +38,7 @@ angular.module("starter.config")
           var qrString = result.text;
 
           var qrJson = JSON.parse(qrString);
-          
+          configService.createDb();
 	        configService.createUser(qrString);
           $scope.userData = qrJson;
   			  $scope.deviceid = device.uuid;
@@ -45,6 +50,6 @@ angular.module("starter.config")
   };
 
 
-    init();
+  init();
 
 })

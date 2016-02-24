@@ -1,24 +1,30 @@
 "use strict";
 
 angular.module("starter.iot")
-.controller("iotController", function($scope, $ionicPlatform, iotService, services) {
+.controller("iotController", function(
+ $scope
+,$ionicPlatform
+,iotService
+,services
+) {
+
 	$scope.iot = {
-		"glucoseConcentration": 250, 
-		"weight": 54,
-		"pulseRate": 42,
-		"systolicPresion": 62
+		"glucoseConcentration": 100, 
+		"weight": 65,
+		"pulseRate": 90,
+		"systolicPresion": 115
 	};
 
 	$scope.sendIotData = function(){
 		$scope.iotInfo = iotService.fillDefaultIotInfo($scope.iot)
-		services.getData()
+
+	    services.getData()
 	    .then(function(data){
 	    	$scope.userData = data;
-	    	$cordovaToast.show(userData, "long", "center")
-
+	    	$cordovaToast.show($scope.userData, "short", "center")
 	    })
 	    .catch(function(){
-	     	$cordovaToast.show("error", "long", "center")
+	     	$cordovaToast.show("error", "short", "center")
 	    });
 
 		iotService.sendIotInfo($scope.iotInfo, $scope.userData);

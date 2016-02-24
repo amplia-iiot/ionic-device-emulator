@@ -140,18 +140,10 @@
 	"buffers":
 	[
 		{
-			"file": "www/templates/config.html",
-			"settings":
-			{
-				"buffer_size": 1835,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "www/js/services.js",
 			"settings":
 			{
-				"buffer_size": 17384,
+				"buffer_size": 1490,
 				"line_ending": "Unix"
 			}
 		},
@@ -159,39 +151,23 @@
 			"file": "www/js/controllers.js",
 			"settings":
 			{
-				"buffer_size": 2222,
+				"buffer_size": 165,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "www/templates/iot.html",
+			"file": "www/js/home/home.controller.js",
 			"settings":
 			{
-				"buffer_size": 1422,
+				"buffer_size": 662,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "www/templates/dmm.html",
+			"file": "www/js/home/home.service.js",
 			"settings":
 			{
-				"buffer_size": 8486,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/templates/home.html",
-			"settings":
-			{
-				"buffer_size": 2760,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/js/app.js",
-			"settings":
-			{
-				"buffer_size": 1961,
+				"buffer_size": 7709,
 				"line_ending": "Unix"
 			}
 		},
@@ -199,7 +175,7 @@
 			"file": "www/index.html",
 			"settings":
 			{
-				"buffer_size": 962,
+				"buffer_size": 1794,
 				"line_ending": "Unix"
 			}
 		},
@@ -207,7 +183,7 @@
 			"file": "www/templates/menu.html",
 			"settings":
 			{
-				"buffer_size": 1016,
+				"buffer_size": 1015,
 				"line_ending": "Unix"
 			}
 		}
@@ -255,10 +231,15 @@
 	[
 		"/home/david/wkf/ionic-device-emulator/www",
 		"/home/david/wkf/ionic-device-emulator/www/js",
+		"/home/david/wkf/ionic-device-emulator/www/js/home",
 		"/home/david/wkf/ionic-device-emulator/www/templates"
 	],
 	"file_history":
 	[
+		"/home/david/wkf/ionic-device-emulator/www/templates/config.html",
+		"/home/david/wkf/ionic-device-emulator/www/templates/home.html",
+		"/home/david/wkf/ionic-device-emulator/www/templates/dmm.html",
+		"/home/david/wkf/ionic-device-emulator/www/templates/iot.html",
 		"/home/david/wkf/ionic-device-emulator/www/js/app.js",
 		"/home/david/wkf/ionic-device-emulator/www/js/services.js",
 		"/home/david/wkf/ionic/app/www/templates/configuration.html",
@@ -425,54 +406,24 @@
 	"groups":
 	[
 		{
-			"selected": 6,
+			"selected": 3,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "www/templates/config.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1835,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								267,
-								267
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"file": "www/js/services.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 17384,
+						"buffer_size": 1490,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								680,
-								680
+								0,
+								0
 							]
 						],
 						"settings":
@@ -489,20 +440,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 1,
 					"file": "www/js/controllers.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2222,
+						"buffer_size": 165,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1455,
-								1455
+								0,
+								0
 							]
 						],
 						"settings":
@@ -519,87 +470,26 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "www/templates/iot.html",
+					"buffer": 2,
+					"file": "www/js/home/home.controller.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1422,
+						"buffer_size": 662,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								518,
-								518
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "www/templates/dmm.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 8486,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								393,
-								393
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 198.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "www/templates/home.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2760,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								482,
-								482
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -609,50 +499,50 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "www/js/app.js",
+					"buffer": 3,
+					"file": "www/js/home/home.service.js",
 					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 1961,
+						"buffer_size": 7709,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								308,
-								308
+								1697,
+								1697
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1083.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 4,
 					"file": "www/index.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 962,
+						"buffer_size": 1794,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								187,
-								187
+								0,
+								0
 							]
 						],
 						"settings":
@@ -669,20 +559,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 5,
 					"file": "www/templates/menu.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1016,
+						"buffer_size": 1015,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								602,
-								602
+								0,
+								0
 							]
 						],
 						"settings":
@@ -695,7 +585,7 @@
 						"translation.y": 54.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 5,
 					"type": "text"
 				}
 			]

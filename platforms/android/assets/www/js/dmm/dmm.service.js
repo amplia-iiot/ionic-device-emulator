@@ -1,6 +1,11 @@
 angular.module("starter.dmm")
 
-.factory("dmmService", function ($http, $cordovaToast, $q, $ionicPopup, $timeout, $cordovaBarcodeScanner) {
+.factory("dmmService", function (
+     $http
+    ,$cordovaToast
+    ,$q
+    ,$ionicLoading) {
+
     userData = {};
     service = {};
 
@@ -13,11 +18,23 @@ angular.module("starter.dmm")
     }
 
 
+    function show() {
+        $ionicLoading.show({
+            template: '<p>Loading...</p><ion-spinner></ion-spinner>'
+        });
+    };
+
+    function hide(){
+        $ionicLoading.hide();
+    };
+    
+
     service.fillDefaultDmmInfo = function () {
+        var date = new Date().getTime();
 
         dmmInfo = {
             "event": {
-                "id": new Date().getTime(),
+                "id": date,
                 "device": {
                     "id": device.uuid,
                     "name": device.model,
@@ -111,16 +128,21 @@ angular.module("starter.dmm")
               "Content-Type": "application/json"
             }
         };
+
+        show($ionicLoading);
+
         $http(request)
             .success(function (data, status, headers, config){
                $cordovaToast.show("Device updated ", "short", "center")
-
             })
             .error(function (data, status, headers, config){
               $cordovaToast.show("Cannot update the device", "short", "center")
               $cordovaToast.show(status, "short", "center")
-
+            })
+            .finally(function($ionicLoading) { 
+              hide($ionicLoading);  
             });
+
         
         }
 

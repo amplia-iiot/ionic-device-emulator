@@ -1,9 +1,20 @@
 angular.module("starter.home")
 
-.factory("homeService", function ($http, $cordovaToast, $q, $ionicPopup,
-         $timeout, $cordovaBarcodeScanner, services) {
+.factory("homeService", function (
+     $http
+    ,$cordovaToast
+    ,$q
+    ,$ionicPopup
+    ,$timeout
+    ,services
+    ,$ionicLoading
+    ,$timeout) {
+
+
     userData = {};
     service = {};
+
+
     function guid() {
         function _p8(s) {
             var p = (Math.random().toString(16)+"000000000").substr(2,8);
@@ -13,16 +24,25 @@ angular.module("starter.home")
     }
 
 
+    function show() {
+        $ionicLoading.show({
+            template: '<p>Loading...</p><ion-spinner></ion-spinner>'
+        });
+    };
 
-    service.getUserData = function (){
+    function hide(){
+        $ionicLoading.hide();
+    };
+    
+
+    function getUserData(){
 
         services.getData()
         .then(function(data){
             userData = data;
-
         })
         .catch(function(){
-          $cordovaToast.show("error", "long", "center")
+          $cordovaToast.show("error", "short", "center")
         });
 
         return userData;
@@ -59,35 +79,48 @@ angular.module("starter.home")
 
 
     service.fillCloudCrudInfo = function (defered){
-        var userData = service.getUserData();
+
+        var canceller = $q.defer();
+        var userData = getUserData();
         var crudInfo;
         var link = "http://" + userData.host + ":" + userData.north_port + "/v70/provision/organizations/" 
             + userData.organization + "/entities/devices/" + device.uuid;
 
         var request = {
             url: link,
+            timeout: canceller.promise,
             method: "GET",
             headers: {
               "X-ApiKey": userData.apikey,
             }
         };
 
+        show($ionicLoading);
+
         $http(request)
             .success(function (data, status, headers, config){ 
                 defered.resolve(data);
-              $cordovaToast.show("Device filled", "short", "center")
             })
             .error(function (data, status, headers, config){
                 defered.reject(data);
-              $cordovaToast.show(status, "short", "center")
-              $cordovaToast.show("Cannot fill the device", "short", "center")
+            })
+            .finally(function($ionicLoading) { 
+              hide($ionicLoading);  
             });
+
+        $timeout(function() {
+            canceller.resolve();
+            hide($ionicLoading);  
+        }, 3000);
+
+
+
 
     }
 
     service.postCrudInfo = function (crudInfo) {
 
-        var userData = service.getUserData();
+        var userData = getUserData();
 
         var link = "http://" + userData.host + ":" + userData.north_port + "/v70/provision/organizations/" 
             + userData.organization + "/entities/devices";
@@ -101,21 +134,27 @@ angular.module("starter.home")
               "Content-Type": "application/json"
             }
         };
+
+        show($ionicLoading);
+
         $http(request)
             .success(function (data, status, headers, config){ 
               $cordovaToast.show("Device created", "short", "center")
-
             })
             .error(function (data, status, headers, config){
               $cordovaToast.show("Cannot create the device", "short", "center")
               $cordovaToast.show(status, "short", "center")
-            });        
+            })
+            .finally(function($ionicLoading) { 
+              hide($ionicLoading);  
+            });
+        
         }
 
 
     service.putCrudInfo = function (crudInfo) {
 
-        var userData = service.getUserData();
+        var userData = getUserData();
         var link = "http://" + userData.host + ":" + userData.north_port + "/v70/provision/organizations/" 
             + userData.organization + "/entities/devices/" + device.uuid;
 
@@ -128,16 +167,21 @@ angular.module("starter.home")
               "Content-Type": "application/json"
             }
         };
+
+        show($ionicLoading);
+
         $http(request)
             .success(function (data, status, headers, config){
                $cordovaToast.show("Device updated ", "short", "center")
-
             })
             .error(function (data, status, headers, config){
               $cordovaToast.show(status, "short", "center")
               $cordovaToast.show("Cannot update the device", "short", "center")
-
+            })
+            .finally(function($ionicLoading) { 
+              hide($ionicLoading);  
             });
+
         
         }
 
@@ -152,15 +196,13 @@ angular.module("starter.home")
         confirmPopup.then(function(res) {
             if(res) {
                 service.deleteDevice();
-            } else {
-
             }
         });
     }    
 
     service.deleteDevice = function (){
 
-        var userData = service.getUserData();
+        var userData = getUserData();
         var link = "http://" + userData.host + ":" + userData.north_port + "/v70/provision/organizations/" 
             + userData.organization + "/entities/devices/" + device.uuid;
 
@@ -171,17 +213,24 @@ angular.module("starter.home")
               "X-ApiKey": userData.apikey,
             }
         };
+
+        show($ionicLoading);
+
         $http(request)
             .success(function (data, status, headers, config){ 
               $cordovaToast.show("Device deleted", "short", "center")
             })
             .error(function (data, status, headers, config){
+            })
+            .finally(function($ionicLoading) { 
+              hide($ionicLoading);  
             });
+
     }
 
     service.sendCrudData = function (crudInfo){
 
-        var userData = service.getUserData();
+        var userData = getUserData();
         var link = "http://" + userData.host + ":" + userData.north_port + "/v70/provision/organizations/" 
             + userData.organization + "/entities/devices/" + device.uuid;
 

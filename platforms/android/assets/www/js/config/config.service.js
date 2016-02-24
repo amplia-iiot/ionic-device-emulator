@@ -1,8 +1,14 @@
 angular.module("starter.config")
 
-.factory("configService", function ($http, $cordovaToast, $q, $ionicPopup, $timeout, $cordovaBarcodeScanner) {
+.factory("configService", function (
+     $http
+    ,$cordovaToast
+    ,$q
+    ) {
+
     userData = {};
     service = {};
+
 
     service.createDb = function(){
 
@@ -13,6 +19,7 @@ angular.module("starter.config")
                 t.executeSql("CREATE TABLE IF NOT EXISTS users (email TEXT, host TEXT, apikey TEXT, organization TEXT, channel TEXT, north_port TEXT, south_port TEXT, PRIMARY KEY(email, host))");
 
             });
+
         } else {
             $cordovaToast.show("Table not created ", "short", "center")
         }

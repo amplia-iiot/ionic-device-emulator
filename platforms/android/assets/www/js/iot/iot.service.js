@@ -1,43 +1,60 @@
 angular.module("starter.iot")
 
-.factory("iotService", function ($http, $cordovaToast, $q, $ionicPopup, $timeout, $cordovaBarcodeScanner) {
+.factory("iotService", function (
+     $http
+    ,$cordovaToast
+    ,$q
+    ,$ionicLoading) {
+
     userData = {};
     service = {};
 
+    function show() {
+        $ionicLoading.show({
+            template: '<p>Loading...</p><ion-spinner></ion-spinner>'
+        });
+    };
+
+    function hide(){
+        $ionicLoading.hide();
+    };
 
     service.fillDefaultIotInfo = function (iot) {
         var time = new Date().getTime();
+        var times = time/1000;
+        var date = Math.round(times);
+
         iotInfo = {
-        "version": "1.0.0",
-        "datastreams": [
-            {
-                "id": "health.glucose.concentration",
-                "feed": "health",
-                "datapoints": [
-                    {"at": time, "value": iot.glucoseConcentration}
-                ]
-            },
-            {
-                "id": "health.bodycomposition.weight",
-                "feed": "health",
-                "datapoints": [
-                    {"at": time, "value": iot.weight}
-                ]
-            },
-            {
-                "id": "health.bloodpresure.pulserate",
-                "feed": "health",
-                "datapoints": [
-                    {"at": time, "value": iot.pulseRate}
-                ]
-            },
-            {
-                "id": "health.bloodpresure.systolic",
-                "feed": "health",
-                "datapoints": [
-                    {"at": time, "value": iot.systolicPresion}
-                ]
-            }
+            "version": "1.0.0",
+            "datastreams": [
+                {
+                    "id": "health.glucose.concentration",
+                    "feed": "health",
+                    "datapoints": [
+                        {"at": date, "value": iot.glucoseConcentration}
+                    ]
+                },
+                {
+                    "id": "health.bodycomposition.weight",
+                    "feed": "health",
+                    "datapoints": [
+                        {"at": date, "value": iot.weight}
+                    ]
+                },
+                {
+                    "id": "health.bloodpresure.pulserate",
+                    "feed": "health",
+                    "datapoints": [
+                        {"at": date, "value": iot.pulseRate}
+                    ]
+                },
+                {
+                    "id": "health.bloodpresure.systolic",
+                    "feed": "health",
+                    "datapoints": [
+                        {"at": date, "value": iot.systolicPresion}
+                    ]
+                }
             ]
         }
 
@@ -60,16 +77,21 @@ angular.module("starter.iot")
               "Content-Type": "application/json"
             }
         };
+
+        show($ionicLoading);
+
         $http(request)
             .success(function (data, status, headers, config){
-                $cordovaToast.show("IoT data sent", "long", "center");
+                $cordovaToast.show("Device updated", "short", "center");
             })
             .error(function (data, status, headers, config){
-                $cordovaToast.show("Cannot send the IoT data", "long", "center");
-                $cordovaToast.show(status, "long", "center");
+                $cordovaToast.show("Cannot update the device", "short", "center");
+                $cordovaToast.show(status, "short", "center");
+            })
+            .finally(function($ionicLoading) { 
+              hide($ionicLoading);  
             });
     }
-
 
     return service;
 
