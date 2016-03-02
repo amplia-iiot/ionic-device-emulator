@@ -1,0 +1,45 @@
+<ion-view view-title="IoT">
+  <ion-content>
+
+    <div class="item">
+      <button class="button button-block button-positive" ng-click = "sendIotData()">
+        Send IoT Data
+      </button>  
+    </div>
+
+    <ul class="card">
+        <div class="item item-divider">
+            Glucose concentration 
+        </div>
+        <div class="item range range-positive">
+            <input type="range" name="glucoseConcentration" min="60" max="150" ng-model="iot.glucoseConcentration">
+            <p>{{iot.glucoseConcentration}} mM</p>
+        </div>
+        
+        <div class="item item-divider">
+            Weight
+        </div>
+        <div class="item range range-positive">
+            <input type="range" name="weight" min="45" max="115" ng-model="iot.weight">
+            <p>{{iot.weight}} kg</p>
+        </div>
+
+        <div class="item item-divider">
+            Pulse Rate
+        </div>
+        <div class="item range range-positive">
+            <input type="range" name="pulseRate" min="50" max="240" ng-model="iot.pulseRate">
+            <p>{{iot.pulseRate}} bpm</p>
+        </div>
+
+        <div class="item item-divider">
+            Systolic Presion
+        </div>
+        <div class="item range range-positive">
+            <input type="range" name="systolicPresion" min="100" max="190" ng-model="iot.systolicPresion">
+            <p>{{iot.systolicPresion}} mmHg</p>
+        </div>
+    </ul>
+
+  </ion-content>
+</ion-view>

@@ -84,6 +84,14 @@ module.exports = [
         "file": "plugins/cordova-plugin-x-toast/test/tests.js",
         "id": "cordova-plugin-x-toast.tests",
         "pluginId": "cordova-plugin-x-toast"
+    },
+    {
+        "file": "plugins/cordova-sqlite-storage/www/SQLitePlugin.js",
+        "id": "cordova-sqlite-storage.SQLitePlugin",
+        "pluginId": "cordova-sqlite-storage",
+        "clobbers": [
+            "SQLitePlugin"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -100,7 +108,8 @@ module.exports.metadata =
     "cordova-plugin-barcodescanner": "0.7.0",
     "cordova-plugin-x-toast": "2.3.1",
     "cordova-plugin-geolocation": "1.0.1",
-    "cordova-plugin-livereload": "1.0.0-dev"
+    "cordova-plugin-livereload": "1.0.0-dev",
+    "cordova-sqlite-storage": "0.8.4-dev"
 }
 // BOTTOM OF METADATA
 });

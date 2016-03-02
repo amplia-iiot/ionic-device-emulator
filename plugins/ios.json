@@ -42,6 +42,9 @@
         },
         "cordova-plugin-livereload": {
             "PACKAGE_NAME": "com.ionicframework.app779438"
+        },
+        "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "com.ionicframework.app779438"
         }
     },
     "dependent_plugins": {}

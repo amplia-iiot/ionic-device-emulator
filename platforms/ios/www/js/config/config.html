@@ -1,0 +1,72 @@
+<ion-view view-title="Configuration">
+  <ion-content>
+
+  <!--Scanner-->
+    <div class="item" >
+      <button class="button button-block button-positive" ng-click = "scan()">
+        <i class="icon ion-qr-scanner"></i>
+         Scan QR Code
+      </button>
+    </div>
+
+    <ul class="card">
+
+      <div class="item item-divider">
+        Device ID
+      </div>
+      <li class="item" href="#/app/{{deviceid}}">
+        {{deviceid}}
+      </li>
+
+      <div class="item item-divider">
+        API-KEY
+      </div>
+      <li class="item" href="#/app/{{userData.apikey}}">
+        {{userData.apikey}}
+      </li>
+
+      <div class="item item-divider">
+        Opengate Host
+      </div>
+      <li class="item" href="#/app/{{userData.opengate_host}}">
+        {{userData.host}}
+      </li>
+
+      <div class="item item-divider">
+        North port
+      </div>
+      <li class="item" href="#/app/{{userData.north_port}}">
+        {{userData.north_port}}
+      </li>
+
+      <div class="item item-divider">
+        south port
+      </div>
+      <li class="item" href="#/app/{{userData.south_port}}">
+        {{userData.south_port}}
+      </li>
+
+      <div class="item item-divider">
+        E-Mail
+      </div>
+      <li class="item" href="#/app/{{userData.email}}">
+        {{userData.email}}
+      </li>
+
+      <div class="item item-divider">
+        Organization
+      </div>
+      <li class="item" href="#/app/{{userData.organization}}">
+        {{userData.organization}}
+      </li>
+
+      <div class="item item-divider">
+        Channel
+      </div>
+      <li class="item" href="#/app/{{userData.channel}}">
+        {{userData.channel}}
+      </li>
+
+    </ul>
+  </ion-content>
+</ion-view>
