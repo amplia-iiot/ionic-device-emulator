@@ -1,0 +1,1 @@
+angular.module("starter.config", ["ngCordova"]);

@@ -4,64 +4,38 @@ angular.module("starter.config")
      $http
     ,$cordovaToast
     ,$q
+    ,$cordovaSQLite
     ) {
 
     userData = {};
     service = {};
 
 
-    service.createDb = function(){
-
-        if (window.openDatabase) {
-            var mydb = openDatabase("user_db", "0.1", "Database with the user data", 1024 * 1024);
-
-            mydb.transaction(function (t) {
-                t.executeSql("CREATE TABLE IF NOT EXISTS users (email TEXT, host TEXT, apikey TEXT, organization TEXT, channel TEXT, north_port TEXT, south_port TEXT, PRIMARY KEY(email, host))");
-
-            });
-
-        } else {
-            $cordovaToast.show("Table not created ", "short", "center")
-        }
-
-
-    }
-
     service.createUser = function(qrCode){
+$cordovaToast.show("createUser()", "short", "center")
+
         var userData = JSON.parse(qrCode);
+        var db = $cordovaSQLite.openDB({ name: "my.db" });
 
+        var query = "INSERT INTO user (email, host, apikey, organization, channel, north_port, south_port) VALUES(?, ?, ?, ?, ?, ?, ?)";
         if (typeof userData.email !== "undefined"){
-            if (window.openDatabase) {
-                var mydb = openDatabase("user_db", "0.1", "Database with the user data", 1024 * 1024);
-            } else {
-                $cordovaToast.show("Table not created ", "short", "center")
-            }
+            $cordovaSQLite.execute(db, query, 
+                [
+                    userData.email,
+                    userData.host,
+                    userData.apikey,
+                    userData.organization,
+                    userData.channel,
+                    userData.north_port,
+                    userData.south_port
+                ]
 
-            if (mydb) {
-                mydb.transaction(function (t) {
-
-                    t.executeSql("INSERT INTO users (email, host, apikey, organization, channel, north_port, south_port) VALUES(?, ?, ?, ?, ?, ?, ?)",
-                     [
-                        userData.email,
-                        userData.host,
-                        userData.apikey,
-                        userData.organization,
-                        userData.channel,
-                        userData.north_port,
-                        userData.south_port
-                    ]
-                    );
-                    $cordovaToast.show("Data inserted", "short", "center")
-
-                });
-            } else {
-                $cordovaToast.show("db not found, your browser does not support web sql!", "short", "center")
-            }
-
-        } else {
-            $cordovaToast.show("ERROR", "short", "center")
+            ).then(function(result) {
+                    $cordovaToast.show("user created", "short", "center")
+            }, function(error) {
+                    $cordovaToast.show("user not created", "short", "center")
+            });
         }
-
     }
 
 

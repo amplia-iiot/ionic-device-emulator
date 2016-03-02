@@ -9,7 +9,7 @@ angular.module("starter", [
 
 ])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $cordovaSQLite) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -22,6 +22,9 @@ angular.module("starter", [
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+    
+    db = $cordovaSQLite.openDB({ name: 'my.db' });
+    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS user (email VARCHAR(50) primary key, host VARCHAR(50), apikey VARCHAR(50), organization VARCHAR(50), channel VARCHAR(50), north_port VARCHAR(10), south_port VARCHAR(10))")
 
   });
 
@@ -38,7 +41,7 @@ angular.module("starter", [
     controller: "appController"
   })
 
-    
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise("/app/config");
 });

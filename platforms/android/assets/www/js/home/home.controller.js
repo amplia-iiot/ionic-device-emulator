@@ -5,28 +5,54 @@ angular.module("starter.home")
  $scope
 ,$ionicPlatform
 ,homeService
+,services
 ,$cordovaToast
 ){
 
 	$scope.sendData = function(){
-		homeService.sendCrudData($scope.crudInfo);
+	    services.getData()
+	    .then(function(data){
+	    	$scope.userData = data;
+		homeService.sendCrudData($scope.crudInfo, data);
+	    })
+	    .catch(function(){
+	     	$cordovaToast.show("error", "short", "center")
+	    });
+
+
 	}; 
 
 	$scope.deleteDevice = function(){
-		homeService.deleteDeviceDialog();
+	    services.getData()
+	    .then(function(data){
+	    	$scope.userData = data;
+			homeService.deleteDeviceDialog(data);
+	    })
+	    .catch(function(){
+	     	$cordovaToast.show("error", "short", "center")
+	    });
 	}; 
 
 	$scope.fillData = function(){
-		homeService.fillCrudDialog()
-		.then(function(data){
-			$scope.crudInfo = data;	
-            $cordovaToast.show("Device filled", "short", "center")
 
-		})
-		.catch(function(){
-            $cordovaToast.show(status, "short", "center")
-            $cordovaToast.show("Cannot fill the device", "short", "center")
-		});
+		services.getData()
+	    .then(function(userdata){
+
+			homeService.fillCrudDialog(userdata)
+			.then(function(cruddata){
+				$scope.crudInfo = cruddata;	
+	            $cordovaToast.show("Device filled", "short", "center")
+			})
+			.catch(function(){
+	            $cordovaToast.show("Cannot fill the device", "short", "center")
+	            $cordovaToast.show(status, "long", "center")
+			});
+
+	    })
+	    .catch(function(){
+	     	$cordovaToast.show("error", "short", "center")
+	    });
+
 	}; 
 
 })

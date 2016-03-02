@@ -66,7 +66,6 @@ angular.module("starter.iot")
 
         var link = "http://" + userData.host + ":" + userData.south_port 
             + "/v70/devices/" + device.uuid + "/collect/iot";
-            console.log(link);
 
         var request = {
             url: link,
@@ -86,7 +85,7 @@ angular.module("starter.iot")
             })
             .error(function (data, status, headers, config){
                 $cordovaToast.show("Cannot update the device", "short", "center");
-                $cordovaToast.show(status, "short", "center");
+                $cordovaToast.show(status, "long", "center");
             })
             .finally(function($ionicLoading) { 
               hide($ionicLoading);  

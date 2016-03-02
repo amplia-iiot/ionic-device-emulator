@@ -21,13 +21,12 @@ angular.module("starter.iot")
 	    services.getData()
 	    .then(function(data){
 	    	$scope.userData = data;
-	    	$cordovaToast.show($scope.userData, "short", "center")
+			iotService.sendIotInfo($scope.iotInfo, $scope.userData);
 	    })
 	    .catch(function(){
 	     	$cordovaToast.show("error", "short", "center")
 	    });
 
-		iotService.sendIotInfo($scope.iotInfo, $scope.userData);
 
 	}
 })

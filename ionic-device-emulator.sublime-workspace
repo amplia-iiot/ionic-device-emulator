@@ -140,50 +140,10 @@
 	"buffers":
 	[
 		{
-			"file": "www/js/services.js",
+			"file": "www/js/app.js",
 			"settings":
 			{
-				"buffer_size": 1490,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/js/controllers.js",
-			"settings":
-			{
-				"buffer_size": 165,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/js/home/home.controller.js",
-			"settings":
-			{
-				"buffer_size": 662,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/js/home/home.service.js",
-			"settings":
-			{
-				"buffer_size": 7709,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/index.html",
-			"settings":
-			{
-				"buffer_size": 1794,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/templates/menu.html",
-			"settings":
-			{
-				"buffer_size": 1015,
+				"buffer_size": 1325,
 				"line_ending": "Unix"
 			}
 		}
@@ -229,13 +189,29 @@
 	},
 	"expanded_folders":
 	[
-		"/home/david/wkf/ionic-device-emulator/www",
-		"/home/david/wkf/ionic-device-emulator/www/js",
-		"/home/david/wkf/ionic-device-emulator/www/js/home",
-		"/home/david/wkf/ionic-device-emulator/www/templates"
+		"/home/david/wkf/device-emulator/www",
+		"/home/david/wkf/device-emulator/www/js",
+		"/home/david/wkf/device-emulator/www/js/config",
+		"/home/david/wkf/device-emulator/www/js/dmm",
+		"/home/david/wkf/device-emulator/www/js/home",
+		"/home/david/wkf/device-emulator/www/js/iot"
 	],
 	"file_history":
 	[
+		"/home/david/wkf/device-emulator/www/js/iot/iot.service.js",
+		"/home/david/wkf/device-emulator/www/js/dmm/dmm.service.js",
+		"/home/david/wkf/device-emulator/www/js/dmm/dmm.controller.js",
+		"/home/david/wkf/device-emulator/www/js/services.js",
+		"/home/david/wkf/device-emulator/www/js/home/home.controller.js",
+		"/home/david/wkf/device-emulator/www/js/config/config.html",
+		"/home/david/wkf/device-emulator/www/js/config/config.service.js",
+		"/home/david/wkf/device-emulator/www/js/home/home.service.js",
+		"/home/david/wkf/device-emulator/www/js/iot/iot.controller.js",
+		"/home/david/wkf/device-emulator/www/js/config/config.controller.js",
+		"/home/david/wkf/device-emulator/www/js/app.js",
+		"/home/david/wkf/device-emulator/www/templates/menu.html",
+		"/home/david/wkf/device-emulator/www/index.html",
+		"/home/david/wkf/device-emulator/www/js/controllers.js",
 		"/home/david/wkf/ionic-device-emulator/www/templates/config.html",
 		"/home/david/wkf/ionic-device-emulator/www/templates/home.html",
 		"/home/david/wkf/ionic-device-emulator/www/templates/dmm.html",
@@ -277,9 +253,10 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 93.0,
 		"where_history":
 		[
+			"/home/david/wkf/device-emulator/www/js",
 			"/home/david/wkf/app/www/js",
 			"/home/david/wkf/app/www/templates",
 			"/home/david/wkf/app/www/js",
@@ -291,6 +268,25 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"status",
+			"getuserdata",
+			"getuser",
+			"time",
+			"getdata",
+			"fill",
+			"()\n",
+			";\n",
+			"fillCloudCrudInfo",
+			"function",
+			"fillCloudCrudInfo",
+			"fillDefaultCrudInfo",
+			"fill",
+			"userData",
+			"getData",
+			"getUserData",
+			"fillCloudCrudInfo",
+			"dialog",
+			"service",
 			"  .state(\"app.dmm\", {\n    url: \"/dmm\",\n    views: {\n      \"menuContent\": {\n        templateUrl: \"templates/dmm.html\",\n        controller: \"DmmCtrl\"\n      }\n    }\n  })  \n",
 			"qrCode",
 			"q.",
@@ -406,186 +402,37 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "www/js/services.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1490,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "www/js/controllers.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 165,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "www/js/home/home.controller.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 662,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "www/js/home/home.service.js",
+					"file": "www/js/app.js",
 					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 7709,
+						"buffer_size": 1325,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1697,
-								1697
+								171,
+								171
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1083.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "www/index.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1794,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "www/templates/menu.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1015,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 54.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -641,7 +488,7 @@
 		[
 			[
 				"",
-				"js/controllers.js"
+				"js/home/home.service.js"
 			],
 			[
 				"con",
@@ -684,7 +531,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 161.0,
+	"side_bar_width": 194.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

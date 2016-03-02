@@ -1,0 +1,266 @@
+<ion-view view-title="DMM">
+  <ion-content>
+
+    <div class="item">
+      <button class="button button-block button-positive" ng-click = "refreshData()">
+        Refresh DMM Data
+      </button>
+      <button class="button button-block button-positive" ng-click = "updateData()">
+        Send DMM Data
+      </button>      
+    </div>
+
+    <ul class="card">
+
+      <label class="item item-input" >
+        <span class="input-label">ID</span>                
+        <input type="text"  ng-model = "dmmInfo.event.id">
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Name</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.name">
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Description</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.description">
+      </label>
+    </ul>
+
+<!--Hardware-->
+  	<ul class="card">
+
+      <div class="item item-divider">
+        Hardware
+      </div>
+
+      <label class="item item-input">
+        <span class="input-label">Serial number</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.hardware.serialnumber">
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Manufacturer name</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.hardware.manufacturer.name">
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Manufacturer OUI</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.hardware.manufacturer.oui">
+      </label>
+
+
+      <label class="item item-input">
+        <span class="input-label">Model</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.hardware.model.name">
+      </label>
+    </ul>
+
+<!--Software-->
+  	<ul class="card">
+
+      <div class="item item-divider">
+        Software
+      </div>   
+
+      <label class="item item-input">
+        <span class="input-label">Name</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.softwareList[0].name">
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Type</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.softwareList[0].type">
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Version</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.softwareList[0].version">
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Date</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.softwareList[0].date">
+      </label>
+    </ul>
+
+<!--Specific Type-->
+    <ul class="card">
+      <label class="item item-input">
+        <span class="input-label">Specific type</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.specificType">
+      </label>
+    </ul>
+
+<!--Location-->
+    <ul class="card">
+      <div class="item item-divider">
+        Location
+      </div>
+
+      <label class="item item-input">
+        <span class="input-label">Timestamp</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.location.timestamp">
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Latitude</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.location.coordinates.latitude">
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Longitude</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.location.coordinates.longitude">
+      </label>
+    </ul>
+
+<!--Temperature-->
+    <ul class="card">
+
+      <div class="item item-divider">
+        Temperature
+      </div>   
+
+      <label class="item item-input">
+        <span class="input-label">Unit</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.temperature.unit">
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Current</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.temperature.current">
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Status</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.temperature.status">
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Trend</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.temperature.trend">
+      </label>      
+
+      <label class="item item-input">
+        <span class="input-label">Average</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.temperature.average">
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Maximum</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.temperature.maximum">
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Minimum</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.temperature.minimum">
+      </label>
+    </ul>
+
+<!--Operational Status-->
+    <ul class="card">
+      <label class="item item-input">
+        <span class="input-label">Operational status</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.operationalStatus">
+      </label>
+    </ul>
+
+<!--Power Suply-->
+    <ul class="card">
+
+      <div class="item item-divider">
+        Power suply
+      </div>
+
+      <label class="item item-input">
+        <span class="input-label">Source</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.powerSupply.source">
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Status</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.powerSupply.status">
+      </label>
+
+
+      <div class="item item-divider">
+        Battery charge level
+      </div>
+
+      <label class="item item-input">
+        <span class="input-label">Trend</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.powerSupply.batteryChargeLevel.trend">
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Status</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.powerSupply.batteryChargeLevel.status">
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Percentage</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.powerSupply.batteryChargeLevel.percentage">
+      </label>
+    </ul>
+
+
+<!--Communication Modules-->
+    <ul class="card">
+
+      <div class="item item-divider">
+        Communications Modules
+      </div>   
+
+      <label class="item item-input">
+        <span class="input-label">Name</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.communicationsModules[0].name">
+      </label>
+
+
+      <label class="item item-input">
+        <span class="input-label">Type</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.communicationsModules[0].type">
+      </label>
+
+      <div class="item item-divider">
+        Hardware
+      </div>
+
+      <label class="item item-input">
+        <span class="input-label">Serial Number</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.communicationsModules[0].hardware.serialnumber">
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Manufacturer</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.communicationsModules[0].hardware.manufacturer.name">
+      </label>      
+
+      <label class="item item-input">
+        <span class="input-label">Manufacturer OUI</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.communicationsModules[0].hardware.manufacturer.oui">
+      </label>      
+      
+      <label class="item item-input">
+        <span class="input-label">Model</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.communicationsModules[0].hardware.model.name">
+      </label>
+
+      <div class="item item-divider">
+        Subscription
+      </div>
+
+      <label class="item item-input">
+        <span class="input-label">Name</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.communicationsModules[0].subscription.name">
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Description</span>
+        <input type="text"  ng-model = "dmmInfo.event.device.communicationsModules[0].subscription.description">
+      </label>
+    </ul>
+
+  </ion-content>
+</ion-view>

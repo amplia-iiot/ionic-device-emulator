@@ -5,10 +5,9 @@ angular.module("starter.home")
     ,$cordovaToast
     ,$q
     ,$ionicPopup
-    ,$timeout
     ,services
     ,$ionicLoading
-    ,$timeout) {
+    ) {
 
 
     userData = {};
@@ -34,21 +33,6 @@ angular.module("starter.home")
         $ionicLoading.hide();
     };
     
-
-    function getUserData(){
-
-        services.getData()
-        .then(function(data){
-            userData = data;
-        })
-        .catch(function(){
-          $cordovaToast.show("error", "short", "center")
-        });
-
-        return userData;
-    }
-
-
 
     service.fillDefaultCrudInfo = function () {
 
@@ -78,24 +62,20 @@ angular.module("starter.home")
     }
 
 
-    service.fillCloudCrudInfo = function (defered){
+    service.fillCloudCrudInfo = function (defered, userData){
 
-        var canceller = $q.defer();
-        var userData = getUserData();
-        var crudInfo;
         var link = "http://" + userData.host + ":" + userData.north_port + "/v70/provision/organizations/" 
             + userData.organization + "/entities/devices/" + device.uuid;
 
+        show($ionicLoading);
+
         var request = {
             url: link,
-            timeout: canceller.promise,
             method: "GET",
             headers: {
               "X-ApiKey": userData.apikey,
             }
         };
-
-        show($ionicLoading);
 
         $http(request)
             .success(function (data, status, headers, config){ 
@@ -108,19 +88,9 @@ angular.module("starter.home")
               hide($ionicLoading);  
             });
 
-        $timeout(function() {
-            canceller.resolve();
-            hide($ionicLoading);  
-        }, 3000);
-
-
-
-
     }
 
-    service.postCrudInfo = function (crudInfo) {
-
-        var userData = getUserData();
+    service.postCrudInfo = function (crudInfo, userData) {
 
         var link = "http://" + userData.host + ":" + userData.north_port + "/v70/provision/organizations/" 
             + userData.organization + "/entities/devices";
@@ -143,7 +113,7 @@ angular.module("starter.home")
             })
             .error(function (data, status, headers, config){
               $cordovaToast.show("Cannot create the device", "short", "center")
-              $cordovaToast.show(status, "short", "center")
+              $cordovaToast.show(status, "long", "center")
             })
             .finally(function($ionicLoading) { 
               hide($ionicLoading);  
@@ -152,9 +122,8 @@ angular.module("starter.home")
         }
 
 
-    service.putCrudInfo = function (crudInfo) {
+    service.putCrudInfo = function (crudInfo, userData) {
 
-        var userData = getUserData();
         var link = "http://" + userData.host + ":" + userData.north_port + "/v70/provision/organizations/" 
             + userData.organization + "/entities/devices/" + device.uuid;
 
@@ -175,8 +144,8 @@ angular.module("starter.home")
                $cordovaToast.show("Device updated ", "short", "center")
             })
             .error(function (data, status, headers, config){
-              $cordovaToast.show(status, "short", "center")
               $cordovaToast.show("Cannot update the device", "short", "center")
+              $cordovaToast.show(status, "long", "center")
             })
             .finally(function($ionicLoading) { 
               hide($ionicLoading);  
@@ -186,7 +155,7 @@ angular.module("starter.home")
         }
 
 
-    service.deleteDeviceDialog = function(){
+    service.deleteDeviceDialog = function(userData){
 
         var confirmPopup = $ionicPopup.confirm({
             title: "Delete device",
@@ -195,14 +164,13 @@ angular.module("starter.home")
 
         confirmPopup.then(function(res) {
             if(res) {
-                service.deleteDevice();
+                service.deleteDevice(userData);
             }
         });
     }    
 
-    service.deleteDevice = function (){
+    service.deleteDevice = function (userData){
 
-        var userData = getUserData();
         var link = "http://" + userData.host + ":" + userData.north_port + "/v70/provision/organizations/" 
             + userData.organization + "/entities/devices/" + device.uuid;
 
@@ -228,9 +196,8 @@ angular.module("starter.home")
 
     }
 
-    service.sendCrudData = function (crudInfo){
+    service.sendCrudData = function (crudInfo, userData){
 
-        var userData = getUserData();
         var link = "http://" + userData.host + ":" + userData.north_port + "/v70/provision/organizations/" 
             + userData.organization + "/entities/devices/" + device.uuid;
 
@@ -244,9 +211,9 @@ angular.module("starter.home")
         $http(request)
             .success(function (data, status, headers, config){ 
                 if (JSON.stringify(status) == 204){
-                    service.createDeviceDialog(crudInfo);
+                    service.createDeviceDialog(crudInfo, userData);
                 } else {
-                    service.updateDeviceDialog(crudInfo);
+                    service.updateDeviceDialog(crudInfo, userData);
                 }
             })
             .error(function (data, status, headers, config){
@@ -255,7 +222,7 @@ angular.module("starter.home")
     }
 
 
-    service.createDeviceDialog = function (crudInfo){
+    service.createDeviceDialog = function (crudInfo, userData){
 
         var confirmPopup = $ionicPopup.confirm({
             title: "Device not found",
@@ -264,14 +231,14 @@ angular.module("starter.home")
 
         confirmPopup.then(function(res) {
             if(res) {
-                service.postCrudInfo(crudInfo);
+                service.postCrudInfo(crudInfo, userData);
             } else {
 
             }
         });
     }    
 
-    service.updateDeviceDialog = function (crudInfo){
+    service.updateDeviceDialog = function (crudInfo, userData){
 
         var confirmPopup = $ionicPopup.confirm({
             title: "Device created",
@@ -280,37 +247,37 @@ angular.module("starter.home")
 
         confirmPopup.then(function(res) {
             if(res) {
-                service.putCrudInfo(crudInfo);
+                service.putCrudInfo(crudInfo, userData);
             } else {
 
             }
         });
     }
 
-    service.fillCrudDialog = function (){
+    service.fillCrudDialog = function (userData){
 
         var defered = $q.defer();
         var promise = defered.promise;
-
 
       var myPopup = $ionicPopup.show({
         template: "Do you want to use the default data or the cloud data?",
         title: "Fill crud data",
         buttons: [
-          { text: "Default",
-            type: "button-positive",
-            onTap: function(e) {
-                var crudInfo = service.fillDefaultCrudInfo();
-                defered.resolve(crudInfo)
-            } 
-        },
-          {
-            text: "Cloud",
-            type: "button-positive",
-            onTap: function(e) {
-                var crudInfo = service.fillCloudCrudInfo(defered);
+            {
+                text: "Default",
+                type: "button-positive",
+                onTap: function(e) {
+                    var crudInfo = service.fillDefaultCrudInfo();
+                    defered.resolve(crudInfo)
+                } 
+            },
+            {
+                text: "Cloud",
+                type: "button-positive",
+                onTap: function(e) {
+                    var crudInfo = service.fillCloudCrudInfo(defered, userData);
+                }
             }
-          }
         ]
       });
 

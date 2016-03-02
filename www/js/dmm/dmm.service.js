@@ -4,7 +4,9 @@ angular.module("starter.dmm")
      $http
     ,$cordovaToast
     ,$q
-    ,$ionicLoading) {
+    ,$ionicLoading
+    ,$timeout
+    ) {
 
     userData = {};
     service = {};
@@ -128,7 +130,7 @@ angular.module("starter.dmm")
               "Content-Type": "application/json"
             }
         };
-
+        
         show($ionicLoading);
 
         $http(request)
@@ -137,7 +139,7 @@ angular.module("starter.dmm")
             })
             .error(function (data, status, headers, config){
               $cordovaToast.show("Cannot update the device", "short", "center")
-              $cordovaToast.show(status, "short", "center")
+              $cordovaToast.show(status, "long", "center")
             })
             .finally(function($ionicLoading) { 
               hide($ionicLoading);  
