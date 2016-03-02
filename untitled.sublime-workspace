@@ -1,0 +1,814 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ionic",
+				"ionicLoading"
+			],
+			[
+				"get",
+				"getTime"
+			],
+			[
+				"create",
+				"createDb"
+			],
+			[
+				"u",
+				"undefined"
+			],
+			[
+				"state",
+				"stateProvider"
+			],
+			[
+				"s",
+				"script"
+			],
+			[
+				"e",
+				"email"
+			],
+			[
+				"ap",
+				"apiKey"
+			],
+			[
+				"host",
+				"hostInfo"
+			],
+			[
+				"err",
+				"error"
+			],
+			[
+				"par",
+				"parsed"
+			],
+			[
+				"paddi",
+				"padding-right"
+			],
+			[
+				"delete",
+				"deleteDevice"
+			],
+			[
+				"cordo",
+				"cordovaToast"
+			],
+			[
+				"cordova",
+				"cordovaGeolocation"
+			],
+			[
+				"open",
+				"opengate_host"
+			],
+			[
+				"user",
+				"userData"
+			],
+			[
+				"defaul",
+				"default_channel"
+			],
+			[
+				"lo",
+				"log"
+			],
+			[
+				"pro",
+				"promise"
+			],
+			[
+				"uri",
+				"uri_prefix"
+			],
+			[
+				"organiz",
+				"organization"
+			],
+			[
+				"crud",
+				"crudInfo"
+			],
+			[
+				"cru",
+				"crudInfo"
+			],
+			[
+				"amplia",
+				"amplia_rd"
+			],
+			[
+				"device",
+				"deviceCreated"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"f",
+				"function"
+			],
+			[
+				"de",
+				"device"
+			],
+			[
+				"g",
+				"guid"
+			],
+			[
+				"dmm",
+				"dmmInfo"
+			],
+			[
+				"volue",
+				"volumeRange"
+			],
+			[
+				"pos",
+				"posApiKey"
+			],
+			[
+				"scan",
+				"scanResults"
+			],
+			[
+				"plat",
+				"ionicPlatform"
+			],
+			[
+				"bat",
+				"battery_level"
+			],
+			[
+				"ioni",
+				"ionicPlatform"
+			],
+			[
+				"conn",
+				"checkConnection"
+			],
+			[
+				"net",
+				"networkState"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "www/js/app.js",
+			"settings":
+			{
+				"buffer_size": 1961,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "angular.module(\"starter.home\")\n\n.factory(\"homeService\", function (\n     $http\n    ,$cordovaToast\n    ,$q\n    ,$ionicPopup\n    ,services\n    ,$ionicLoading\n    ) {\n\n\n    userData = {};\n    service = {};\n\n\n    function guid() {\n        function _p8(s) {\n            var p = (Math.random().toString(16)+\"000000000\").substr(2,8);\n            return s ? \"-\" + p.substr(0,4) + \"-\" + p.substr(4,4) : p ;\n        }\n        return _p8() + _p8(true) + _p8(true) + _p8();\n    }\n\n\n    function show() {\n        $ionicLoading.show({\n            template: '<p>Loading...</p><ion-spinner></ion-spinner>'\n        });\n    };\n\n    function hide(){\n        $ionicLoading.hide();\n    };\n    \n\n    service.fillDefaultCrudInfo = function () {\n\n        var id = device.uuid;\n        crudInfo = {\n            \"device\": {\n                \"id\": id,\n                \"provision\": {\n                    \"customId\": [ id ],\n                    \"template\": \"default\",\n                    \"type\": \"gateway\",\n                    \"specificType\": [\n                        \"COORDINATOR\"\n                    ],\n                    \"name\" : [ id ],\n                    \"description\" : [\"Device for testing purposes 1\"],\n                    \"admin\": {\n                        \"organization\": \"amplia_rd\",\n                        \"channel\": \"default_channel\",\n                        \"administrativeState\": \"ACTIVE\",\n                        \"serviceGroup\": \"emptyServiceGroup\"\n                    }\n                }\n            }\n        };\n        return crudInfo;    \n    }\n\n\n    service.fillCloudCrudInfo = function (defered, userData){\n\n        var link = \"http://\" + userData.host + \":\" + userData.north_port + \"/v70/provision/organizations/\" \n            + userData.organization + \"/entities/devices/\" + device.uuid;\n\n        show($ionicLoading);\n\n        var request = {\n            url: link,\n            method: \"GET\",\n            headers: {\n              \"X-ApiKey\": userData.apikey,\n            }\n        };\n\n        $http(request)\n            .success(function (data, status, headers, config){ \n                defered.resolve(data);\n            })\n            .error(function (data, status, headers, config){\n                defered.reject(data);\n            })\n            .finally(function($ionicLoading) { \n              hide($ionicLoading);  \n            });\n\n    }\n\n    service.postCrudInfo = function (crudInfo, userData) {\n\n        var link = \"http://\" + userData.host + \":\" + userData.north_port + \"/v70/provision/organizations/\" \n            + userData.organization + \"/entities/devices\";\n\n        var request = {\n            url: link,\n            method: \"POST\",\n            data: crudInfo,\n            headers: {\n              \"X-ApiKey\": userData.apikey,\n              \"Content-Type\": \"application/json\"\n            }\n        };\n\n        show($ionicLoading);\n\n        $http(request)\n            .success(function (data, status, headers, config){ \n              $cordovaToast.show(\"Device created\", \"short\", \"center\")\n            })\n            .error(function (data, status, headers, config){\n              $cordovaToast.show(\"Cannot create the device\", \"short\", \"center\")\n              $cordovaToast.show(status, \"long\", \"center\")\n            })\n            .finally(function($ionicLoading) { \n              hide($ionicLoading);  \n            });\n        \n        }\n\n\n    service.putCrudInfo = function (crudInfo, userData) {\n\n        var link = \"http://\" + userData.host + \":\" + userData.north_port + \"/v70/provision/organizations/\" \n            + userData.organization + \"/entities/devices/\" + device.uuid;\n\n        var request = {\n            url: link,\n            method: \"PUT\",\n            data: crudInfo,\n            headers: {\n              \"X-ApiKey\": userData.apikey,\n              \"Content-Type\": \"application/json\"\n            }\n        };\n\n        show($ionicLoading);\n\n        $http(request)\n            .success(function (data, status, headers, config){\n               $cordovaToast.show(\"Device updated \", \"short\", \"center\")\n            })\n            .error(function (data, status, headers, config){\n              $cordovaToast.show(\"Cannot update the device\", \"short\", \"center\")\n              $cordovaToast.show(status, \"long\", \"center\")\n            })\n            .finally(function($ionicLoading) { \n              hide($ionicLoading);  \n            });\n\n        \n        }\n\n\n    service.deleteDeviceDialog = function(userData){\n\n        var confirmPopup = $ionicPopup.confirm({\n            title: \"Delete device\",\n            template: \"Do you want to delete this device?\"\n        });\n\n        confirmPopup.then(function(res) {\n            if(res) {\n                service.deleteDevice(userData);\n            }\n        });\n    }    \n\n    service.deleteDevice = function (userData){\n\n        var link = \"http://\" + userData.host + \":\" + userData.north_port + \"/v70/provision/organizations/\" \n            + userData.organization + \"/entities/devices/\" + device.uuid;\n\n        var request = {\n            url: link,\n            method: \"DELETE\",\n            headers: {\n              \"X-ApiKey\": userData.apikey,\n            }\n        };\n\n        show($ionicLoading);\n\n        $http(request)\n            .success(function (data, status, headers, config){ \n              $cordovaToast.show(\"Device deleted\", \"short\", \"center\")\n            })\n            .error(function (data, status, headers, config){\n            })\n            .finally(function($ionicLoading) { \n              hide($ionicLoading);  \n            });\n\n    }\n\n    service.sendCrudData = function (crudInfo, userData){\n\n        var link = \"http://\" + userData.host + \":\" + userData.north_port + \"/v70/provision/organizations/\" \n            + userData.organization + \"/entities/devices/\" + device.uuid;\n\n        var request = {\n            url: link,\n            method: \"GET\",\n            headers: {\n              \"X-ApiKey\": userData.apikey,\n            }\n        };\n        $http(request)\n            .success(function (data, status, headers, config){ \n                if (JSON.stringify(status) == 204){\n                    service.createDeviceDialog(crudInfo, userData);\n                } else {\n                    service.updateDeviceDialog(crudInfo, userData);\n                }\n            })\n            .error(function (data, status, headers, config){\n                $cordovaToast.show(\"error\", \"short\", \"center\")\n            });\n    }\n\n\n    service.createDeviceDialog = function (crudInfo, userData){\n\n        var confirmPopup = $ionicPopup.confirm({\n            title: \"Device not found\",\n            template: \"This device isn\\'t created yet, do you want to create it with the default data?\"\n        });\n\n        confirmPopup.then(function(res) {\n            if(res) {\n                service.postCrudInfo(crudInfo, userData);\n            } else {\n\n            }\n        });\n    }    \n\n    service.updateDeviceDialog = function (crudInfo, userData){\n\n        var confirmPopup = $ionicPopup.confirm({\n            title: \"Device created\",\n            template: \"This device is created, do you want to update it?\"\n        });\n\n        confirmPopup.then(function(res) {\n            if(res) {\n                service.putCrudInfo(crudInfo, userData);\n            } else {\n\n            }\n        });\n    }\n\n    service.fillCrudDialog = function (userData){\n\n        var defered = $q.defer();\n        var promise = defered.promise;\n\n      var myPopup = $ionicPopup.show({\n        template: \"Do you want to use the default data or the cloud data?\",\n        title: \"Fill crud data\",\n        buttons: [\n            {\n                text: \"Default\",\n                type: \"button-positive\",\n                onTap: function(e) {\n                    var crudInfo = service.fillDefaultCrudInfo();\n                    defered.resolve(crudInfo)\n                } \n            },\n            {\n                text: \"Cloud\",\n                type: \"button-positive\",\n                onTap: function(e) {\n                    var crudInfo = service.fillCloudCrudInfo(defered, userData);\n                }\n            }\n        ]\n      });\n\n      return promise;\n\n    }\n\n\n    return service;\n\n});",
+			"file": "www/js/home/home.service.js",
+			"file_size": 8159,
+			"file_write_time": 131013851439149643,
+			"settings":
+			{
+				"buffer_size": 8159,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "\"use strict\";\n\nangular.module(\"starter.home\")\n.controller(\"homeController\", function(\n $scope\n,$ionicPlatform\n,homeService\n,services\n,$cordovaToast\n){\n\n	$scope.sendData = function(){\n	    services.getData()\n	    .then(function(data){\n	    	$scope.userData = data;\n		homeService.sendCrudData($scope.crudInfo, data);\n	    })\n	    .catch(function(){\n	     	$cordovaToast.show(\"error\", \"short\", \"center\")\n	    });\n\n\n	}; \n\n	$scope.deleteDevice = function(){\n	    services.getData()\n	    .then(function(data){\n	    	$scope.userData = data;\n			homeService.deleteDeviceDialog(data);\n	    })\n	    .catch(function(){\n	     	$cordovaToast.show(\"error\", \"short\", \"center\")\n	    });\n	}; \n\n	$scope.fillData = function(){\n\n		services.getData()\n	    .then(function(userdata){\n\n			homeService.fillCrudDialog(userdata)\n			.then(function(cruddata){\n				$scope.crudInfo = cruddata;	\n	            $cordovaToast.show(\"Device filled\", \"short\", \"center\")\n			})\n			.catch(function(){\n	            $cordovaToast.show(\"Cannot fill the device\", \"short\", \"center\")\n	            $cordovaToast.show(status, \"long\", \"center\")\n			});\n\n	    })\n	    .catch(function(){\n	     	$cordovaToast.show(\"error\", \"short\", \"center\")\n	    });\n\n	}; \n\n})\n",
+			"file": "www/js/home/home.controller.js",
+			"file_size": 1207,
+			"file_write_time": 131013855371689143,
+			"settings":
+			{
+				"buffer_size": 1207,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/js/services.js",
+			"settings":
+			{
+				"buffer_size": 14922,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 117.0,
+		"last_filter": "babel",
+		"selected_items":
+		[
+			[
+				"babel",
+				"Set Syntax: JavaScript (Babel)"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"json",
+				"Set Syntax: JSON"
+			],
+			[
+				":w",
+				":w - Save"
+			]
+		],
+		"width": 467.0
+	},
+	"console":
+	{
+		"height": 139.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/david/wkf/device-emulator/www/js/iot/iot.controller.js",
+		"/home/david/wkf/device-emulator/www/js/home/home.controller.js",
+		"/home/david/wkf/device-emulator/www/js/dmm/dmm.service.js",
+		"/home/david/wkf/device-emulator/www/js/iot/iot.service.js",
+		"/home/david/wkf/tfg",
+		"/home/david/wkf/ionic-device-emulator/www/js/home/home.service.js",
+		"/home/david/wkf/ionic-device-emulator/www/js/iot/iot.html",
+		"/home/david/wkf/ionic-device-emulator/www/js/iot/iot.service.js",
+		"/home/david/wkf/ionic-device-emulator/www/js/home/home.controller.js",
+		"/home/david/wkf/ionic-device-emulator/www/js/services.js",
+		"/home/david/wkf/ionic-device-emulator/www/js/dmm/dmm.service.js",
+		"/home/david/wkf/ionic-device-emulator/www/js/dmm/dmm.controller.js",
+		"/home/david/wkf/ionic-device-emulator/www/js/config/config.controller.js",
+		"/home/david/wkf/ionic-device-emulator/www/js/config/config.service.js",
+		"/home/david/wkf/ionic-device-emulator/www/js/iot/iot.controller.js",
+		"/home/david/wkf/ionic-device-emulator/www/js/dmm/dmm.html",
+		"/home/david/wkf/profile.json",
+		"/home/david/wkf/ionic-device-emulator/www/js/config/config.module.js",
+		"/home/david/wkf/ionic-device-emulator/www/js/app.js",
+		"/home/david/test.sh",
+		"/home/david/wkf/refactorized-ionic/second-ionic-device-emulator/www/js/iot/iot.controller.js",
+		"/home/david/wkf/refactorized-ionic/second-ionic-device-emulator/www/js/iot/iot.service.js",
+		"/home/david/wkf/refactorized-ionic/second-ionic-device-emulator/www/js/home/home.controller.js",
+		"/home/david/wkf/refactorized-ionic/second-ionic-device-emulator/www/js/services.js",
+		"/home/david/wkf/refactorized-ionic/second-ionic-device-emulator/www/js/controllers.js",
+		"/home/david/wkf/refactorized-ionic/second-ionic-device-emulator/www/index.html",
+		"/home/david/wkf/refactorized-ionic/second-ionic-device-emulator/www/js/config/config.service.js",
+		"/home/david/wkf/refactorized-ionic/second-ionic-device-emulator/www/js/config/config.controller.js",
+		"/home/david/wkf/refactorized-ionic/second-ionic-device-emulator/www/js/home/home.service.js",
+		"/home/david/wkf/refactorized-ionic/second-ionic-device-emulator/www/js/config/config.route.js",
+		"/home/david/wkf/refactorized-ionic/second-ionic-device-emulator/www/js/dmm/dmm.route.js",
+		"/home/david/wkf/refactorized-ionic/second-ionic-device-emulator/www/js/home/home.route.js",
+		"/home/david/wkf/refactorized-ionic/second-ionic-device-emulator/www/js/iot/iot.route.js",
+		"/home/david/wkf/refactorized-ionic/second-ionic-device-emulator/www/js/dmm/dmm.service.js",
+		"/home/david/wkf/refactorized-ionic/second-ionic-device-emulator/www/js/dmm/dmm.controller.js",
+		"/home/david/wkf/refactorized-ionic/second-ionic-device-emulator/www/js/app.js",
+		"/home/david/wkf/refactorized-ionic/second-ionic-device-emulator/www/js/config/config.module.js",
+		"/home/david/wkf/refactorized-ionic/second-ionic-device-emulator/www/templates/menu.html",
+		"/home/david/.local/share/Trash/files/menu.html",
+		"/home/david/wkf/refactorized-ionic/second-ionic-device-emulator/www/js/home/home.module.js",
+		"/home/david/wkf/refactorized-ionic/second-ionic-device-emulator/www/js/dmm/dmm.module.js",
+		"/home/david/wkf/refactorized-ionic/second-ionic-device-emulator/www/js/iot/iot.module.js",
+		"/home/david/wkf/refactorized-ionic/first-ionic-device-emulator/www/index.html",
+		"/home/david/wkf/refactorized-ionic/second-ionic-device-emulator/www/js/iot/iot.router.js",
+		"/home/david/wkf/refactorized-ionic/ionic-device-emulator/www/js/config/config.controller.js",
+		"/home/david/wkf/refactorized-ionic/ionic-device-emulator/www/js/iot/iot.module.js",
+		"/home/david/wkf/refactorized-ionic/ionic-device-emulator/www/js/app.module.js",
+		"/home/david/wkf/refactorized-ionic/ionic-device-emulator/www/js/app.js",
+		"/home/david/wkf/refactorized-ionic/ionic-device-emulator/www/js/dmm/dmm.service.js",
+		"/home/david/wkf/refactorized-ionic/ionic-device-emulator/www/js/home/home.controller.js",
+		"/home/david/wkf/refactorized-ionic/ionic-device-emulator/www/js/home/home.module.js",
+		"/home/david/wkf/refactorized-ionic/ionic-device-emulator/www/js/dmm/dmm.router.js",
+		"/home/david/wkf/refactorized-ionic/ionic-device-emulator/www/js/config/config.router.js",
+		"/home/david/wkf/refactorized-ionic/ionic-device-emulator/www/js/config/config.service.js",
+		"/home/david/wkf/refactorized-ionic/ionic-device-emulator/www/js/dmm/dmm.controller.js",
+		"/home/david/wkf/refactorized-ionic/ionic-device-emulator/www/js/dmm/dmm.module.js",
+		"/home/david/wkf/refactorized-ionic/ionic-device-emulator/www/js/home/home.router.js",
+		"/home/david/wkf/refactorized-ionic/ionic-device-emulator/www/js/home/home.service.js",
+		"/home/david/wkf/refactorized-ionic/ionic-device-emulator/www/js/iot/iot.controller.js",
+		"/home/david/wkf/refactorized-ionic/ionic-device-emulator/www/js/iot/iot.router.js",
+		"/home/david/wkf/refactorized-ionic/ionic-device-emulator/www/js/app.controller.js",
+		"/home/david/wkf/refactorized-ionic/ionic-device-emulator/www/js/iot/iot.service.js",
+		"/home/david/wkf/refactorized-ionic/ionic-device-emulator/www/index.html",
+		"/home/david/wkf/refactorized-ionic/ionic-device-emulator/www/js/config/config.module.js",
+		"/home/david/wkf/refactorized-ionic/ionic-device-emulator/www/js/menu.html",
+		"/home/david/wkf/refactorized-ionic/ionic-device-emulator/www/js/app.router.js",
+		"/home/david/wkf/refactorized-ionic/ionic-device-emulator/www/js/home/home.html",
+		"/home/david/wkf/refactorized-ionic/ionic-device-emulator/www/js/controllers.js",
+		"/home/david/wkf/refactorized-ionic/ionic-device-emulator/www/templates/iot.html",
+		"/home/david/wkf/refactorized-ionic/ionic-device-emulator/www/js/config/config.html",
+		"/home/david/wkf/refactorized-ionic/ionic-device-emulator/www/js/iot/iot.html",
+		"/home/david/wkf/refactorized-ionic/ionic-device-emulator/www/js/services.js",
+		"/home/david/wkf/opengate-web/server/api/opengateuser/opengateuser.controller.js",
+		"/home/david/wkf/opengate-web/server/api/opengateuser/index.spec.js",
+		"/home/david/wkf/opengate-web/server/api/opengateuser/index.js",
+		"/home/david/wkf/opengate-web/client/app/opengate/opengate.scss",
+		"/home/david/wkf/opengate-web/client/app/main/main.scss",
+		"/home/david/wkf/opengate-web/client/app/opengate/opengate.module.js",
+		"/home/david/wkf/opengate-web/client/app/admin/admin.html",
+		"/home/david/wkf/opengate-web/bower.json",
+		"/home/david/wkf/opengate-web/client/index.html",
+		"/home/david/wkf/opengate-web/client/app/opengate/opengate.html",
+		"/home/david/wkf/opengate-web/client/app/main/main.controller.js",
+		"/home/david/wkf/opengate-web/server/api/thing/thing.controller.js",
+		"/home/david/wkf/opengate-web/client/app/opengate/opengate.controller.js",
+		"/home/david/wkf/opengate-web/server/api/opengateuser/opengateuser.model.js",
+		"/home/david/wkf/opengate-web/server/api/opengateuser/opengateuser.integration.js",
+		"/home/david/wkf/opengate-web/server/api/opengateuser/opengateuser.events.js",
+		"/home/david/wkf/opengate-web/server/config/seed.js",
+		"/home/david/wkf/opengate-web/client/app/admin/admin.controller.js",
+		"/home/david/wkf/opengate-web/package.json",
+		"/home/david/.local/share/Trash/files/first-qr-code-generator/Gruntfile.js",
+		"/home/david/wkf/opengate-web/client/app/account/login/login.html",
+		"/home/david/wkf/opengate-web/client/app/account/login/login.controller.js",
+		"/home/david/wkf/opengate-web/client/app/main/main.controller.spec.js",
+		"/home/david/wkf/pruebas-yeoman/jhipster-qr-code-generator/src/main/java/com/amplia/qrcodegenerator/service/opengate/OpenGateService.java",
+		"/home/david/wkf/deleted-device-emulator/full get",
+		"/home/david/wkf/opengate-web/client/components/navbar/navbar.html",
+		"/home/david/wkf/opengate-web/client/app/main/main.html",
+		"/home/david/wkf/opengate-web/client/app/opengate/opengate.router.js",
+		"/home/david/wkf/pruebas-yeoman/first-qr-code-generator/app/views/main.html",
+		"/home/david/wkf/pruebas-yeoman/first-qr-code-generator/app/scripts/app.js",
+		"/home/david/wkf/pruebas-yeoman/first-qr-code-generator/app/scripts/controllers/main.js",
+		"/home/david/wkf/pruebas-yeoman/complete/src/main/java/hello/HelloController.java",
+		"/home/david/wkf/opengate-web/client/app/app.js",
+		"/home/david/wkf/opengate-web/client/app/app.scss",
+		"/home/david/wkf/pruebas-yeoman/fullstack3/client/app/main/main.js",
+		"/home/david/wkf/pruebas-yeoman/fullstack3/client/app/main/main.css",
+		"/home/david/wkf/pruebas-yeoman/fullstack3/client/app/opengate/opengate.html",
+		"/home/david/wkf/pruebas-yeoman/fullstack3/client/components/navbar/navbar.html",
+		"/home/david/wkf/pruebas-yeoman/fullstack3/client/app/opengate/opengate.controller.js",
+		"/home/david/wkf/pruebas-yeoman/fullstack3/client/app/main/main.html",
+		"/home/david/wkf/pruebas-yeoman/fullstack3/client/components/navbar/navbar.controller.js",
+		"/home/david/wkf/pruebas-yeoman/fullstack3/client/app/app.js",
+		"/home/david/wkf/pruebas-yeoman/fullstack3/client/app/opengate/opengate.router.js",
+		"/home/david/wkf/pruebas-yeoman/jhipster-qr-code-generator/src/main/webapp/scripts/app/main/main.html",
+		"/home/david/wkf/pruebas-yeoman/fullstack3/server/auth/auth.service.js",
+		"/home/david/wkf/pruebas-yeoman/fullstack3/.tmp/components/auth/auth.service.js",
+		"/home/david/wkf/pruebas-yeoman/jhipster-qr-code-generator/src/main/webapp/scripts/app/qrcode/qrcode.controller.js",
+		"/home/david/wkf/pruebas-yeoman/fullstack3/client/app/main/opengate.js",
+		"/home/david/wkf/pruebas-yeoman/jhipster-qr-code-generator/src/main/webapp/scripts/app/qrcode/qrcode.html",
+		"/home/david/wkf/pruebas-yeoman/fullstack3/client/index.html",
+		"/home/david/wkf/pruebas-yeoman/fullstack3/client/app/admin/admin.router.js",
+		"/home/david/wkf/pruebas-yeoman/fullstack3/client/app/opengate/opengate.module.js",
+		"/home/david/wkf/pruebas-yeoman/fullstack3/client/app/admin/admin.module.js",
+		"/home/david/wkf/pruebas-yeoman/fullstack3/client/app/admin/admin.controller.js",
+		"/home/david/wkf/pruebas-yeoman/fullstack3/client/app/main/main.controller.js",
+		"/home/david/wkf/pruebas-yeoman/fullstack3/.tmp/app/app.js"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/home/david/wkf/ionic-device-emulator/www/js",
+			"/home/david/wkf/ionic-device-emulator/www",
+			"/home/david/wkf/refactorized-ionic/second-ionic-device-emulator/www/js/iot",
+			"/home/david/wkf/refactorized-ionic/ionic-device-emulator/www/js",
+			"/home/david/wkf/refactorized-ionic/ionic-device-emulator/www",
+			"/home/david/wkf/opengate-web",
+			"/home/david/wkf/opengate-web/client",
+			"/home/david/wkf/opengate-web/server",
+			"/home/david/wkf/opengate-web/server/api/thing",
+			"/home/david/wkf/pruebas-yeoman/fullstack3/client",
+			"/home/david/wkf/pruebas-yeoman/fullstack3",
+			"/home/david/wkf/qr-generator",
+			"/home/david/wkf/app/www/js",
+			"/home/david/wkf/app/www/templates",
+			"/home/david/wkf/app/www/js",
+			"/home/david/wkf/app/www"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"fill",
+			"getdata",
+			"getuser",
+			"postcrud",
+			"crudinfo",
+			"getuser",
+			"fillCloudCrudInfo",
+			"delete",
+			"getuser",
+			"device.uuid",
+			"ionicload",
+			"cordovaBarcodeScanner",
+			"timeout",
+			"barco",
+			"pop",
+			"ionicPopup",
+			"toast",
+			"long",
+			"id",
+			"date",
+			"time",
+			"createuser",
+			"getuser",
+			"splash",
+			"home",
+			"$q",
+			"q",
+			"$q",
+			"come",
+			"iot",
+			"start",
+			"starter",
+			"'",
+			"dmm",
+			"bundle",
+			"route",
+			"ionic",
+			"angular",
+			"service",
+			"guid",
+			"dmm",
+			"06567163",
+			"your text to encode",
+			"angular.js",
+			"qr",
+			"cookiereader",
+			"qr",
+			"findByIdAsync",
+			"info",
+			"active",
+			"opengate",
+			"thing",
+			"main",
+			"service",
+			"auth.service",
+			"opengate",
+			"admin",
+			"narrow",
+			"ng-view",
+			"dependen",
+			"qr",
+			"mv",
+			"mvn",
+			"'",
+			"postcrud",
+			"createde",
+			"fillcloud",
+			"filldefaultcr",
+			"iot",
+			"iotData",
+			"dmmdata",
+			"putDmmData",
+			"fillCloudDmmInfo",
+			"fillCloudDmmInfo		",
+			"fillCloudDmmInfo",
+			"fillDmmDialog",
+			"putcrud",
+			"devicedialog",
+			"filldefaultdmm",
+			"\n        ",
+			"uri",
+			"device update",
+			"error",
+			"fill",
+			"send",
+			"uri",
+			"postcru",
+			"link",
+			"\"device.uuid\"",
+			"user",
+			"device.uuid",
+			"sendCrudData",
+			"userdata",
+			"fillCrudDialog",
+			"postCrudInfo",
+			"createdevi",
+			"device.uuid",
+			"fillde",
+			"postCrudInfo",
+			"createDeviceDialog",
+			"device.",
+			"var userdata",
+			"userdata",
+			"getUserData",
+			"deleteDevice",
+			"fillCloudCrudInfo",
+			"service",
+			"fillCrudDialog",
+			"fillCloudCrudInfo",
+			"postCrudInfo",
+			"post",
+			"resolve",
+			"fillCloudCrudInfo",
+			"device.uu",
+			"Toast",
+			"toast",
+			"sendCrud",
+			"toast",
+			"//$cordovaToast",
+			"fillCloudCrudInfo",
+			"crudInfo",
+			"fillCloudCrudInfo",
+			"toas",
+			"putcrud",
+			"'",
+			"updatede",
+			"defaul",
+			"placeholder=\"there is no device ID\""
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"short",
+			"iot",
+			"\"",
+			"home",
+			"configService",
+			"homeService",
+			"\"",
+			"iotInfo",
+			"port",
+			"device.uuid",
+			"\"device.uuid\"",
+			"$cordovaToast",
+			"\"",
+			"",
+			"\""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "www/js/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1961,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "www/js/home/home.service.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8159,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7300,
+								7300
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4539.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "www/js/home/home.controller.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1207,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								476,
+								476
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 285.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "www/js/services.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14922,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "untitled.sublime-project",
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"ap",
+				"js/app.js"
+			],
+			[
+				"",
+				"js/app.js"
+			],
+			[
+				"iot",
+				"js/iot/iot.controller.js"
+			],
+			[
+				"inde",
+				"index.html"
+			],
+			[
+				"con",
+				"js/controllers.js"
+			],
+			[
+				"conr",
+				"js/controllers.js"
+			],
+			[
+				"ser",
+				"js/services.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 212.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
