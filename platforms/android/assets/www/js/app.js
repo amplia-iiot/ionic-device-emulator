@@ -6,6 +6,7 @@ angular.module("starter", [
     ,"starter.home"
     ,"starter.dmm"
     ,"starter.config"
+    ,"starter.about"
 
 ])
 
