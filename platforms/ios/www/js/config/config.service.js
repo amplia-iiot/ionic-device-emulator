@@ -30,9 +30,9 @@ angular.module("starter.config")
                 ]
 
             ).then(function(result) {
-                    $cordovaToast.show("user created", "short", "center")
+                    $cordovaToast.show("User created", "short", "center")
             }, function(error) {
-                    $cordovaToast.show("user not created", "short", "center")
+                    $cordovaToast.show("User not created", "short", "center")
             });
         }
     }

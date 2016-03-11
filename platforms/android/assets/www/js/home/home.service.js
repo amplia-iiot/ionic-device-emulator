@@ -82,7 +82,7 @@ angular.module("starter.home")
                 defered.resolve(data);
             })
             .error(function (data, status, headers, config){
-                defered.reject(data);
+                defered.reject(status);
             })
             .finally(function($ionicLoading) { 
               hide($ionicLoading);  

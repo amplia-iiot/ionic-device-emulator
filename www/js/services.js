@@ -1,12 +1,14 @@
 angular.module("starter.services", ["ngCordova"])
 
-.factory("services", function ($http
+.factory("services", function (
+     $http
     ,$cordovaToast
     ,$q
     ,$ionicPopup
     ,$timeout
     ,$cordovaSQLite
-    ,$cordovaBarcodeScanner
+    ,$ionicLoading
+    ,$cordovaFileTransfer
     ) {
 
     userData = {};
@@ -19,8 +21,6 @@ angular.module("starter.services", ["ngCordova"])
 
         var query = "SELECT * FROM user";
         $cordovaSQLite.execute(db,query,[]).then(function(result) {
-
-            var row = result.rows.item(0).email;
 
             var userData = {
                 "email": result.rows.item(0).email,
@@ -42,5 +42,25 @@ angular.module("starter.services", ["ngCordova"])
         return promise;
     }
 
+    service.getApiKey = function (){
+        var defered = $q.defer();
+        var promise = defered.promise;
+        var db = $cordovaSQLite.openDB({ name: 'my.db' });
+
+        var query = "SELECT * FROM user";
+        $cordovaSQLite.execute(db,query,[]).then(function(result) {
+
+            var apikey = result.rows.item(0).apikey;
+            defered.resolve(apikey);
+
+        }, function(error) {
+            var msg = "error in db";
+            defered.reject(msg);
+        });
+
+        return promise;
+    }
+
     return service;
+
 });

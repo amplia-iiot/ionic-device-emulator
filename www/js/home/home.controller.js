@@ -31,7 +31,7 @@ angular.module("starter.home")
 	    .catch(function(){
 	     	$cordovaToast.show("error", "short", "center")
 	    });
-	}; 
+	};
 
 	$scope.fillData = function(){
 
@@ -43,7 +43,7 @@ angular.module("starter.home")
 				$scope.crudInfo = cruddata;	
 	            $cordovaToast.show("Device filled", "short", "center")
 			})
-			.catch(function(){
+			.catch(function(status){
 	            $cordovaToast.show("Cannot fill the device", "short", "center")
 	            $cordovaToast.show(status, "long", "center")
 			});

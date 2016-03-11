@@ -12,17 +12,17 @@ angular.module("starter.config")
 
 
 	function init(){
- 		services.getData()
-    .then(function(data){
-      $scope.userData = data;
-    })
-    .catch(function(){
-      console.log("Error")
-      $cordovaToast.show("error", "short", "center")
-    });
-
+    
     $ionicPlatform.ready(function() {
       $scope.deviceid = device.uuid ;
+
+      services.getData()
+      .then(function(data){
+        $scope.userData = data;
+      })
+      .catch(function(){
+        $cordovaToast.show("error", "short", "center")
+      });
     });
 	}
 
@@ -46,7 +46,6 @@ angular.module("starter.config")
     $scope.scanResults = "";
 
   };
-
 
   init();
 

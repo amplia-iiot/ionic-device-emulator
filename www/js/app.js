@@ -7,7 +7,7 @@ angular.module("starter", [
     ,"starter.dmm"
     ,"starter.config"
     ,"starter.about"
-
+    ,"starter.operations"
 ])
 
 .run(function($ionicPlatform, $cordovaSQLite) {
@@ -26,6 +26,7 @@ angular.module("starter", [
     
     db = $cordovaSQLite.openDB({ name: 'my.db' });
     $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS user (email VARCHAR(50) primary key, host VARCHAR(50), apikey VARCHAR(50), organization VARCHAR(50), channel VARCHAR(50), north_port VARCHAR(10), south_port VARCHAR(10))")
+    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS operations (id VARCHAR(50) primary key, name VARCHAR(50), timestamp VARCHAR(30))")
 
   });
 

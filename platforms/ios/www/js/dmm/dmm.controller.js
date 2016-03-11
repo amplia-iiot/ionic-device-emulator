@@ -19,15 +19,15 @@ angular.module("starter.dmm")
     $scope.dmmInfo.event.device.location.timestamp = new Date().toISOString();
     $scope.dmmInfo.event.id = new Date().getTime();
 
-	services.getData()
-    .then(function(data){
-    	$scope.userData = data;
-    })
-    .catch(function(){
-      $cordovaToast.show("error", "short", "center")
-    });
+  	services.getData()
+      .then(function(data){
+      	$scope.userData = data;
+        dmmService.postDmmData($scope.dmmInfo, $scope.userData);
+      })
+      .catch(function(){
+        $cordovaToast.show("error", "short", "center")
+      });
 
-    dmmService.postDmmData($scope.dmmInfo, $scope.userData);
   }; 
 
 })
