@@ -7,7 +7,6 @@ angular.module("starter.operations")
     ,$timeout
     ,$cordovaSQLite
     ,$ionicLoading
-    ,$cordovaFileTransfer
 ){
     service = {};
     updateOperations();
@@ -18,11 +17,6 @@ angular.module("starter.operations")
         });
     };
 
-    function showDownload() {
-        $ionicLoading.show({
-            template: '<p>Downloading...</p><ion-spinner></ion-spinner>'
-        });
-    };
 
     function hide(){
         $ionicLoading.hide();
@@ -33,6 +27,9 @@ angular.module("starter.operations")
         var name;
 
         switch (requestName) {
+            case "UPDATE":
+                name = "Update";
+                break;
             case "SET_CLOCK_EQUIPMENT":
                 name = "Set clock equipment";
                 break;
@@ -98,10 +95,11 @@ angular.module("starter.operations")
     service.webSocketDialog = function (data){
         var name = getName(data.operation.request.name);
 
+        var date = new Date(Number(data.operation.request.timestamp)).toUTCString();
 
         var alertPopup = $ionicPopup.alert({
             title: name,
-            template: "ID: " + data.operation.request.id + "<br/> <br/> Timestamp: " + data.operation.request.timestamp
+            template: "ID: " + data.operation.request.id + "<br/> <br/> Date: " + date
         });
 
         alertPopup.then(function(res) {
@@ -116,50 +114,40 @@ angular.module("starter.operations")
     }
 
     service.webSocketDialogUpdate = function (data){
-        $cordovaToast.show("update received", "short", "center")
+        
+        var defered = $q.defer();
+        var promise = defered.promise;
 
-        /*
-        var downloadUrl = [];
+        var size;
+        var downloadUrl;
+        var date = new Date(Number(data.operation.request.timestamp)).toUTCString();
+
         var parameters = data.operation.request.parameters;
+
         for (var i = 0; i < parameters.length; i++){
-            if (parameters[i].name == deploymentElements){
+            if (parameters[i].name == "deploymentElements"){
                 for (var j = 0; j < parameters[i].value.array.length; j++){
-                    downloadUrl[j] = parameters[i].value.array[j].downloadUrl;
-                    console.log(downloadUrl[j]);
+                    downloadUrl = parameters[i].value.array[j].downloadUrl;
+                    size = parameters[i].value.array[j].size;
                 }
             }
         } 
 
-
         var alertPopup = $ionicPopup.alert({
             title: "Update",
-            template: "ID: " + data.operation.request.id + "<br/> <br/> Timestamp: " + data.operation.request.timestamp
-                + "<br/> <br/> Size: " + JSON.stringify(request.parameters[2].value.array[0].size)
+            template: "ID: " + data.operation.request.id + "<br/> <br/> Timestamp: " + date
+                + "<br/> <br/> Size: " + size + "<br/> <br/> Download URL: " + downloadUrl
         });
+        
 
         alertPopup.then(function(res) {
 
-            document.addEventListener('deviceready', function () {
+            defered.resolve(downloadUrl);
 
-            var url = request.parameters[2].value.array[0].downloadUrl;
-            var targetPath = cordova.file.externalRootDirectory + 'Pictures/' + "update.json";
-            var trustHosts = true;
-            var options = {};
 
-            $cordovaFileTransfer.download(url, targetPath, options, trustHosts)
-              .then(function(result) {
-                $cordovaToast.show("succes", "short", "center")
-                $cordovaToast.show(result, "short", "center")
-              }, function(err) {
-                $cordovaToast.show("error", "short", "center")
-              }, function (progress) {
-                $cordovaToast.show("in progress", "short", "center")
-
-              });
-
-           }, false);
         });
-        */
+
+        return promise        
     }
 
     service.eraseDatabaseDialog = function(){
@@ -207,7 +195,7 @@ angular.module("starter.operations")
         var id = data.operation.request.id;
         var name = getName(data.operation.request.name);
         var timestamp = data.operation.request.timestamp;
-
+        
         var query = "INSERT INTO operations (id, name, timestamp) VALUES(?, ?, ?)";
         $cordovaSQLite.execute(db, query, 
             [
@@ -238,7 +226,7 @@ angular.module("starter.operations")
             for(var i = result.rows.length - 1; i >= 0; i--){
                 var row = result.rows.item(i);
 
-                var date = new Date(Number(row.timestamp)).toDateString();
+                var date = new Date(Number(row.timestamp)).toUTCString();
                 
                 listholder.innerHTML += "</div> <li class=\"item\"><h2>" 
                 + row.name + "</h2> <p style=\"text-indent:20px;\">" 

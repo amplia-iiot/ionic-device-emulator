@@ -323,6 +323,22 @@ module.exports = [
         "clobbers": [
             "window.FileTransfer"
         ]
+    },
+    {
+        "file": "plugins/com.verso.cordova.clipboard/www/clipboard.js",
+        "id": "com.verso.cordova.clipboard.Clipboard",
+        "pluginId": "com.verso.cordova.clipboard",
+        "clobbers": [
+            "cordova.plugins.clipboard"
+        ]
+    },
+    {
+        "file": "plugins/org.pbernasconi.progressindicator/www/progressIndicator.js",
+        "id": "org.pbernasconi.progressindicator.ProgressIndicator",
+        "pluginId": "org.pbernasconi.progressindicator",
+        "clobbers": [
+            "ProgressIndicator"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -342,7 +358,9 @@ module.exports.metadata =
     "cordova-plugin-livereload": "1.0.0-dev",
     "cordova-sqlite-storage": "0.8.4-dev",
     "cordova-plugin-file": "4.1.1",
-    "cordova-plugin-file-transfer": "1.5.0"
+    "cordova-plugin-file-transfer": "1.5.0",
+    "com.verso.cordova.clipboard": "0.1.0",
+    "org.pbernasconi.progressindicator": "1.1.0"
 }
 // BOTTOM OF METADATA
 });

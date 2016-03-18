@@ -12,9 +12,13 @@ angular.module("starter.config")
 
 
     service.createUser = function(qrCode){
-
+        
         var userData = JSON.parse(qrCode);
+
         var db = $cordovaSQLite.openDB({ name: "my.db" });
+
+        var query = "DELETE FROM user";
+        $cordovaSQLite.execute(db,query,[])
 
         var query = "INSERT INTO user (email, host, apikey, organization, channel, north_port, south_port) VALUES(?, ?, ?, ?, ?, ?, ?)";
         if (typeof userData.email !== "undefined"){
@@ -36,7 +40,6 @@ angular.module("starter.config")
             });
         }
     }
-
 
     return service;
 

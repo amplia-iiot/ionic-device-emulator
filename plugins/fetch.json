@@ -107,9 +107,8 @@
     },
     "phonegap-plugin-barcodescanner": {
         "source": {
-            "type": "git",
-            "url": "https://github.com/phonegap/phonegap-plugin-barcodescanner.git",
-            "subdir": "."
+            "type": "registry",
+            "id": "phonegap-plugin-barcodescanner"
         },
         "is_top_level": true,
         "variables": {}
@@ -128,6 +127,24 @@
             "id": "cordova-plugin-file"
         },
         "is_top_level": false,
+        "variables": {}
+    },
+    "com.verso.cordova.clipboard": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/VersoSolutions/CordovaClipboard.git",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "org.pbernasconi.progressindicator": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/pbernasconi/cordova-progressIndicator.git",
+            "subdir": "."
+        },
+        "is_top_level": true,
         "variables": {}
     }
 }

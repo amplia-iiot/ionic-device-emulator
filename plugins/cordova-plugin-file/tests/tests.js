@@ -2035,7 +2035,7 @@ exports.defineAutoTests = function () {
                     }, failed.bind(null, done, 'root.getFile - Error creating file: ' + file2));
                 }, failed.bind(null, done, 'createFile - Error creating file: ' + file1));
             });
-            it("file.spec.78 moveTo: directory replace empty directory", function (done) {
+            it "file.spec.78 moveTo: directory replace empty directory", function (done) {
                 if (isIndexedDBShim) {
                     /* `copyTo` and `moveTo` functions do not support directories (Firefox, IE) */
                     pending();

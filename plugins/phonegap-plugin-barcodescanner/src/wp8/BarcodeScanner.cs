@@ -83,7 +83,7 @@
         public BarcodeResult(Result barcode)
         {
             this.Cancelled = false;
-            this.Format = barcode.BarcodeFormat.ToString();
+            this.Format = (int)barcode.BarcodeFormat;
             this.Text = barcode.Text;
         }
 
@@ -103,7 +103,7 @@
         /// The barcode format.
         /// </value>
         [DataMember(Name = "format")]
-        public string Format { get; private set; }
+        public int Format { get; private set; }
 
         /// <summary>
         /// Gets the barcode text.

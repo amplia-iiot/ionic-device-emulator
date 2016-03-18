@@ -7,7 +7,10 @@ angular.module("starter.operations")
  ,$ionicModal
  ,$ionicPlatform
  ,operationsService
+ ,$ionicPopup
  ,$cordovaToast
+ ,$cordovaFileTransfer
+ ,$ionicLoading
  ){
 
 	var webSocket;
@@ -34,8 +37,9 @@ angular.module("starter.operations")
 			return;
 		}
 		
-		webSocket = new WebSocket("ws://172.19.18.217:9956/v70/"
+		webSocket = new WebSocket("ws://192.168.1.163:9956/v70/"
 			+ "6d7757995310abb2?xHyKZ=2829be88-a7d7-4f51-aefc-3cc2385b6506");
+
 
 		webSocket.onopen = function(event) {
 	     	$cordovaToast.show("Connection open", "short", "center")
@@ -48,16 +52,44 @@ angular.module("starter.operations")
 	     	console.log(event.data)
 		};
 
+
 		webSocket.onmessage = function(event) {
+
     		var data = JSON.parse(event.data)
 
-			if(data.operation.request.name == "UPDATE")
+			if(data.operation.request.name == "UPDATE"){
 				operationsService.webSocketDialogUpdate(data)
-			else
+				.then(function(downloadUrl){
+		            
+		            var filename = downloadUrl.split("/").pop();
+		            var targetPath = cordova.file.externalDataDirectory + filename;
+		            var trustHosts = true;
+		            var options = {};
+		            options.headers = {'X-ApiKey': "2829be88-a7d7-4f51-aefc-3cc2385b6506" };
+
+					$cordovaFileTransfer.download(downloadUrl, targetPath, options, trustHosts)
+		              .then(function(result) {
+		                $cordovaToast.show("Download finished", "short", "center")
+			            	$scope.download.downloading = false;
+			            }, function(err) {
+			                $cordovaToast.show("Cant\'t download the file", "short", "center")
+			            	$scope.download.downloading = false;
+
+			            }, function (progress) {
+			            	$scope.download = {
+			            		"downloading": true,
+			            		"progress": Math.floor(progress.loaded / progress.total * 100) + "%"
+			            	}
+		            	});
+				})
+			}
+			else {
 				operationsService.webSocketDialog(data);
+			}
 
 			operationsService.saveOperation(data);
 		};
+
 
 		webSocket.onclose = function(event) {
 	     	$cordovaToast.show("Connection closed", "short", "center")
@@ -67,5 +99,31 @@ angular.module("starter.operations")
 	function closeSocket() {
 		webSocket.close();
 	}
+
+
+	$scope.$watch('download.downloading', function () {
+		if($scope.download.downloading){
+
+        $ionicLoading.show({
+            template: "<p>Downloading</p><ion-spinner></ion-spinner> <br/> <br/>" 
+            	+ " <p href=\"#/app/{{download.progress}}\">{{download.progress}}</p>",
+            scope: $scope
+        });
+
+		/*	
+			$scope.alertPopup = $ionicPopup.alert({
+	            title: "Downloading",
+	            template: "<p href=\"#/app/{{download.progress}}\">{{download.progress}}</p>",
+	            scope: $scope
+
+        });
+*/
+		}
+		else{
+	        $ionicLoading.hide();
+			//$scope.download.progress = " ";
+		}
+	});
+
 
 })

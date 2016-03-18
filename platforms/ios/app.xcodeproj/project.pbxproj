@@ -67,6 +67,10 @@
 		7D3AA70A241C4004ABF3AE5B /* CDVLocalFilesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 899248B336C74B32BB9A8B98 /* CDVLocalFilesystem.m */; };
 		DD62CD50994445EBBD436E95 /* CDVAssetLibraryFilesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = ABEF34C26CF841E1B08F7203 /* CDVAssetLibraryFilesystem.m */; };
 		C0DF6E34EB7A41B8B37EFB67 /* CDVFileTransfer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A254D6A864FBCACD1C072 /* CDVFileTransfer.m */; };
+		6C8CC49ABDDA4D1EA0D03D0F /* CDVClipboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB2CB833F284646B5D11EEE /* CDVClipboard.m */; };
+		1374F0FDD1E84F5BB4E1BA16 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = BE891482B6AA457685ADD26D /* MBProgressHUD.m */; };
+		BDD69C2C647646D8A004CC6A /* ProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = DF693012E1C540F08DB62933 /* ProgressIndicator.m */; };
+		C5DF54464F2E41F8AA379D5C /* ProgressIndicator.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6BE91BCFA3AA4075B53914D2 /* ProgressIndicator.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -179,6 +183,13 @@
 		51334385DAAE499DBD91E74A /* CDVAssetLibraryFilesystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVAssetLibraryFilesystem.h"; path = "cordova-plugin-file/CDVAssetLibraryFilesystem.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		7C7A254D6A864FBCACD1C072 /* CDVFileTransfer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVFileTransfer.m"; path = "cordova-plugin-file-transfer/CDVFileTransfer.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		9F50639CC0554A2C97BF5B99 /* CDVFileTransfer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVFileTransfer.h"; path = "cordova-plugin-file-transfer/CDVFileTransfer.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		5BB2CB833F284646B5D11EEE /* CDVClipboard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVClipboard.m"; path = "com.verso.cordova.clipboard/CDVClipboard.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		35D53F7C34804DCD8396B8FD /* CDVClipboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVClipboard.h"; path = "com.verso.cordova.clipboard/CDVClipboard.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		BE891482B6AA457685ADD26D /* MBProgressHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "MBProgressHUD.m"; path = "org.pbernasconi.progressindicator/MBProgressHUD.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		DF693012E1C540F08DB62933 /* ProgressIndicator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "ProgressIndicator.m"; path = "org.pbernasconi.progressindicator/ProgressIndicator.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		B0DF1B44C9A345159F285DD4 /* MBProgressHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MBProgressHUD.h"; path = "org.pbernasconi.progressindicator/MBProgressHUD.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		15C3186030874E99B1F8B189 /* ProgressIndicator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ProgressIndicator.h"; path = "org.pbernasconi.progressindicator/ProgressIndicator.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		6BE91BCFA3AA4075B53914D2 /* ProgressIndicator.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = "ProgressIndicator.bundle"; path = "ProgressIndicator.bundle"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,6 +270,7 @@
 				308D05311370CCF300D202BF /* splash */,
 				8D1107310486CEB800E47090 /* app-Info.plist */,
 				5D88EEB7713A4D91B2ECC024 /* scannerOverlay.xib */,
+				6BE91BCFA3AA4075B53914D2 /* ProgressIndicator.bundle */,
 			);
 			name = Resources;
 			path = "app/Resources";
@@ -331,6 +343,12 @@
 				51334385DAAE499DBD91E74A /* CDVAssetLibraryFilesystem.h */,
 				7C7A254D6A864FBCACD1C072 /* CDVFileTransfer.m */,
 				9F50639CC0554A2C97BF5B99 /* CDVFileTransfer.h */,
+				5BB2CB833F284646B5D11EEE /* CDVClipboard.m */,
+				35D53F7C34804DCD8396B8FD /* CDVClipboard.h */,
+				BE891482B6AA457685ADD26D /* MBProgressHUD.m */,
+				DF693012E1C540F08DB62933 /* ProgressIndicator.m */,
+				B0DF1B44C9A345159F285DD4 /* MBProgressHUD.h */,
+				15C3186030874E99B1F8B189 /* ProgressIndicator.h */,
 			);
 			name = Plugins;
 			path = "app/Plugins";
@@ -485,6 +503,7 @@
 				7E7966E51810823500FA85AD /* icon-76@2x.png in Resources */,
 				30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */,
 				8386C4F43A0E49D08B2F1C1F /* scannerOverlay.xib in Resources */,
+				C5DF54464F2E41F8AA379D5C /* ProgressIndicator.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -536,6 +555,9 @@
 				7D3AA70A241C4004ABF3AE5B /* CDVLocalFilesystem.m in Sources */,
 				DD62CD50994445EBBD436E95 /* CDVAssetLibraryFilesystem.m in Sources */,
 				C0DF6E34EB7A41B8B37EFB67 /* CDVFileTransfer.m in Sources */,
+				6C8CC49ABDDA4D1EA0D03D0F /* CDVClipboard.m in Sources */,
+				1374F0FDD1E84F5BB4E1BA16 /* MBProgressHUD.m in Sources */,
+				BDD69C2C647646D8A004CC6A /* ProgressIndicator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
