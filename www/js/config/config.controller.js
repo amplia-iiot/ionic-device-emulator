@@ -3,13 +3,29 @@
 angular.module("starter.config")
 .controller("configController", function(
    $scope
+  ,$rootScope
+  ,$ionicLoading
   ,$ionicPlatform
   ,configService
   ,services
   ,$cordovaBarcodeScanner
   ,$cordovaToast) {
    
-
+  $rootScope.download;
+  
+  
+  $rootScope.$watch('download.downloading', function () {
+    if ($rootScope.download.downloading){
+        $ionicLoading.show({
+            template: "<p>Downloading</p><ion-spinner></ion-spinner> <br/> <br/>" 
+              + " <p href=\"#/app/{{$root.download.progress}}\">{{$root.download.progress}}</p>",
+            scope: $rootScope
+        });
+    }
+    else {
+          $ionicLoading.hide();
+    }
+  });
 
 	function init(){
     
@@ -25,7 +41,6 @@ angular.module("starter.config")
       });
     });
 	}
-
 
   $scope.scan = function(){
 

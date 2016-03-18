@@ -4,6 +4,7 @@ angular.module("starter.operations")
 
 .controller("operationsController", function(
   $scope
+ ,$rootScope
  ,$ionicModal
  ,$ionicPlatform
  ,operationsService
@@ -70,13 +71,13 @@ angular.module("starter.operations")
 					$cordovaFileTransfer.download(downloadUrl, targetPath, options, trustHosts)
 		              .then(function(result) {
 		                $cordovaToast.show("Download finished", "short", "center")
-			            	$scope.download.downloading = false;
+			            	$rootScope.download.downloading = false;
 			            }, function(err) {
 			                $cordovaToast.show("Cant\'t download the file", "short", "center")
-			            	$scope.download.downloading = false;
+			            	$rootScope.download.downloading = false;
 
 			            }, function (progress) {
-			            	$scope.download = {
+			            	$rootScope.download = {
 			            		"downloading": true,
 			            		"progress": Math.floor(progress.loaded / progress.total * 100) + "%"
 			            	}
@@ -100,28 +101,18 @@ angular.module("starter.operations")
 		webSocket.close();
 	}
 
+  	$rootScope.download = ""
 
-	$scope.$watch('download.downloading', function () {
-		if($scope.download.downloading){
-
+	$rootScope.$watch('download.downloading', function () {
+		if ($rootScope.download.downloading){
         $ionicLoading.show({
             template: "<p>Downloading</p><ion-spinner></ion-spinner> <br/> <br/>" 
-            	+ " <p href=\"#/app/{{download.progress}}\">{{download.progress}}</p>",
+            	+ " <p href=\"#/app/{{$root.download.progress}}\">{{$root.download.progress}}</p>",
             scope: $scope
         });
-
-		/*	
-			$scope.alertPopup = $ionicPopup.alert({
-	            title: "Downloading",
-	            template: "<p href=\"#/app/{{download.progress}}\">{{download.progress}}</p>",
-	            scope: $scope
-
-        });
-*/
 		}
-		else{
+		else {
 	        $ionicLoading.hide();
-			//$scope.download.progress = " ";
 		}
 	});
 
