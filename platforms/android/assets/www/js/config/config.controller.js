@@ -10,25 +10,11 @@ angular.module("starter.config")
   ,services
   ,$cordovaBarcodeScanner
   ,$cordovaToast) {
-   
-  $rootScope.download;
   
-  
-  $rootScope.$watch('download.downloading', function () {
-    if ($rootScope.download.downloading){
-        $ionicLoading.show({
-            template: "<p>Downloading</p><ion-spinner></ion-spinner> <br/> <br/>" 
-              + " <p href=\"#/app/{{$root.download.progress}}\">{{$root.download.progress}}</p>",
-            scope: $rootScope
-        });
-    }
-    else {
-          $ionicLoading.hide();
-    }
-  });
+
 
 	function init(){
-    
+
     $ionicPlatform.ready(function() {
       $scope.deviceid = device.uuid ;
 
@@ -56,12 +42,30 @@ angular.module("starter.config")
           $scope.userData = qrJson;
   			  $scope.deviceid = device.uuid;
 
-        }, function(error) { });
+        }, function(error) { 
+          $cordovaToast.show("Scan failed", "short", "center")
+        });
     });
     $scope.scanResults = "";
 
   };
 
   init();
+
+  
+  $rootScope.download = ""
+  
+  $rootScope.$watch('download.downloading', function () {
+    if ($rootScope.download.downloading){
+        $ionicLoading.show({
+            template: "<p>Downloading</p><ion-spinner></ion-spinner> <br/> <br/>" 
+              + " <p href=\"#/app/{{$root.download.progress}}\">{{$root.download.progress}}</p>"
+        });
+    }
+    else {
+          $ionicLoading.hide();
+    }
+  });
+
 
 })

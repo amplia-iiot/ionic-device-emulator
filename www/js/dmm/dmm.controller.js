@@ -16,8 +16,7 @@ angular.module("starter.dmm")
     if ($rootScope.download.downloading){
         $ionicLoading.show({
             template: "<p>Downloading</p><ion-spinner></ion-spinner> <br/> <br/>" 
-              + " <p href=\"#/app/{{$root.download.progress}}\">{{$root.download.progress}}</p>",
-            scope: $rootScope
+              + " <p href=\"#/app/{{$root.download.progress}}\">{{$root.download.progress}}</p>"
         });
     }
     else {
@@ -30,8 +29,7 @@ angular.module("starter.dmm")
   }; 
 
   $scope.updateData = function(){
-    //$scope.dmmInfo = dmmService.fillDefaultDmmInfo();
-    
+
     $scope.dmmInfo.event.device.softwareList[0].date = new Date().toISOString();
     $scope.dmmInfo.event.device.location.timestamp = new Date().toISOString();
     $scope.dmmInfo.event.id = new Date().getTime();

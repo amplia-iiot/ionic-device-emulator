@@ -16,8 +16,7 @@ angular.module("starter.home")
 		if ($rootScope.download.downloading){
         $ionicLoading.show({
             template: "<p>Downloading</p><ion-spinner></ion-spinner> <br/> <br/>" 
-            	+ " <p href=\"#/app/{{download.progress}}\">{{download.progress}}</p>",
-            scope: $rootScope
+            	+ " <p href=\"#/app/{{download.progress}}\">{{download.progress}}</p>"
         });
 		}
 		else {

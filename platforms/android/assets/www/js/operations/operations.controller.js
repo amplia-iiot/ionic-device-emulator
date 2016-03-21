@@ -77,10 +77,10 @@ angular.module("starter.operations")
 			            	$rootScope.download.downloading = false;
 
 			            }, function (progress) {
-			            	$rootScope.download = {
-			            		"downloading": true,
-			            		"progress": Math.floor(progress.loaded / progress.total * 100) + "%"
-			            	}
+							$rootScope.download = {
+								"downloading": true,
+								"progress": Math.floor(progress.loaded / progress.total * 100) + "%"
+							}
 		            	});
 				})
 			}
@@ -105,11 +105,10 @@ angular.module("starter.operations")
 
 	$rootScope.$watch('download.downloading', function () {
 		if ($rootScope.download.downloading){
-        $ionicLoading.show({
-            template: "<p>Downloading</p><ion-spinner></ion-spinner> <br/> <br/>" 
-            	+ " <p href=\"#/app/{{$root.download.progress}}\">{{$root.download.progress}}</p>",
-            scope: $scope
-        });
+	        $ionicLoading.show({
+	            template: "<p>Downloading</p><ion-spinner></ion-spinner> <br/> <br/>" 
+	            	+ " <p href=\"#/app/{{$root.download.progress}}\">{{$root.download.progress}}</p>"
+	        });
 		}
 		else {
 	        $ionicLoading.hide();
