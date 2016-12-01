@@ -3,5 +3,12 @@
   "private": "true",
   "devDependencies": {
     "ionic": "driftyco/ionic-bower#1.2.1"
+  },
+  "dependencies": {
+    "opengate-angularjs": "http://guest:Amplia16@gitlab.amplia.es/opengate-ux/opengate-angularjs.git#develop",
+    "ngCordova": "^0.1.27-alpha"
+  },
+  "resolutions": {
+    "angular": "~1.5"
   }
 }

@@ -33,8 +33,7 @@ angular.module("starter.iot")
 
 	$scope.sendIotData = function(){
 		$scope.iotInfo = iotService.fillDefaultIotInfo($scope.iot)
-
-	    services.getData()
+		services.getData()
 	    .then(function(data){
 	    	$scope.userData = data;
 			iotService.sendIotInfo($scope.iotInfo, $scope.userData);

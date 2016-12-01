@@ -37,9 +37,21 @@ angular.module("starter.operations")
 	     	$cordovaToast.show("WebSocket is already opened.", "short", "center");
 			return;
 		}
+		services.getData()
+	      .then(function(data){
+	        $scope.userData = data;
+	        var res = $scope.userData.host.replace("http", "ws");
+	        var webSocketURL = res + ":" + $scope.userData.south_port  + "/v70/" 
+	        + $scope.userData.entityKey + "?" + $scope.userData.apikey ;
+	        webSocket = new WebSocket(webSocketURL);
+			//webSocket = new WebSocket("ws://192.168.1.163:9956/v70/"
+			//+ "6d7757995310abb2?xHyKZ=2829be88-a7d7-4f51-aefc-3cc2385b6506");
+
+	      })
+	      .catch(function(){
+	        $cordovaToast.show("error", "short", "center")
+	      });
 		
-		webSocket = new WebSocket("ws://192.168.1.163:9956/v70/"
-			+ "6d7757995310abb2?xHyKZ=2829be88-a7d7-4f51-aefc-3cc2385b6506");
 
 
 		webSocket.onopen = function(event) {

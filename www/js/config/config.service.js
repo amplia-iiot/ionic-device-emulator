@@ -20,7 +20,7 @@ angular.module("starter.config")
         var query = "DELETE FROM user";
         $cordovaSQLite.execute(db,query,[])
 
-        var query = "INSERT INTO user (email, host, apikey, organization, channel, north_port, south_port) VALUES(?, ?, ?, ?, ?, ?, ?)";
+        var query = "INSERT INTO user (email, host, apikey, organization, channel, north_port, south_port, entityKey) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
         if (typeof userData.email !== "undefined"){
             $cordovaSQLite.execute(db, query, 
                 [
@@ -30,12 +30,14 @@ angular.module("starter.config")
                     userData.organization,
                     userData.channel,
                     userData.north_port,
-                    userData.south_port
+                    userData.south_port,
+                    userData.entityKey
                 ]
 
             ).then(function(result) {
                     $cordovaToast.show("User created", "short", "center")
             }, function(error) {
+                 $cordovaToast.show(error, "short", "center")
                     $cordovaToast.show("User not created", "short", "center")
             });
         }

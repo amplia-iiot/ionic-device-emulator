@@ -8,7 +8,10 @@ angular.module("starter.dmm")
   ,$ionicPlatform
   ,dmmService
   ,$cordovaToast
-  ,services) {
+  ,services
+  ,$ogapi
+  ,opengate
+) {
 
   $rootScope.download = ""
   
@@ -26,10 +29,10 @@ angular.module("starter.dmm")
 
   $scope.refreshData = function(){
     $scope.dmmInfo = dmmService.fillDefaultDmmInfo();
+
   }; 
 
   $scope.updateData = function(){
-
     $scope.dmmInfo.event.device.softwareList[0].date = new Date().toISOString();
     $scope.dmmInfo.event.device.location.timestamp = new Date().toISOString();
     $scope.dmmInfo.event.id = new Date().getTime();
@@ -39,7 +42,8 @@ angular.module("starter.dmm")
       	$scope.userData = data;
         dmmService.postDmmData($scope.dmmInfo, $scope.userData);
       })
-      .catch(function(){
+      .catch(function(error){
+         $cordovaToast.show(error, "short", "center")
         $cordovaToast.show("error", "short", "center")
       });
 

@@ -1,4 +1,4 @@
-angular.module("starter.services", ["ngCordova"])
+angular.module("starter.services", ["ngCordova","ogapi"])
 
 .factory("services", function (
      $http
@@ -17,8 +17,8 @@ angular.module("starter.services", ["ngCordova"])
     service.getData = function (){
         var defered = $q.defer();
         var promise = defered.promise;
+        
         var db = $cordovaSQLite.openDB({ name: 'my.db' });
-
         var query = "SELECT * FROM user";
         $cordovaSQLite.execute(db,query,[]).then(function(result) {
 
@@ -29,7 +29,8 @@ angular.module("starter.services", ["ngCordova"])
                 "organization": result.rows.item(0).organization,
                 "host": result.rows.item(0).host,
                 "north_port": result.rows.item(0).north_port,
-                "south_port": result.rows.item(0).south_port
+                "south_port": result.rows.item(0).south_port,
+                "entityKey" : result.rows.item(0).entityKey
             };
 
             defered.resolve(userData);

@@ -1,0 +1,48 @@
+Searching 33 files for "opengate.api"
+
+/home/katherin/git/ionic-device-emulator/www/js/dmm/dmm.service.js:
+  115          show($ionicLoading);
+  116          var date = new Date().getTime();
+  117:         apiR = opengate.api(userData);
+  118          var message = apiR().deviceMessageBuilder().withDmmVersion(dmmInfo.version).withEventId(dmmInfo.event.id);
+  119              message.withDeviceId(userData.entityKey)
+
+/home/katherin/git/ionic-device-emulator/www/js/home/home.service.js:
+   61          try{
+   62              show($ionicLoading);
+   63:             apiR = opengate.api(userData);
+   64              //$cordovaToast.show(userData.organization + "  "+  userData.entityKey, "short", "center")
+   65              var devices = apiR().newDeviceFinder();
+   ..
+   92      service.postCrudInfo = function(crudInfo, userData) {
+   93          show($ionicLoading);
+   94:         apiR = opengate.api(userData);
+   95          var deviceBuilder = apiR().devicesBuilder();
+   96          deviceBuilder.withEntityKey(crudInfo.device.id)
+   ..
+  118      service.putCrudInfo = function(crudInfo, userData) {
+  119          show($ionicLoading);
+  120:         apiR = opengate.api(userData);
+  121         
+  122          var deviceBuilder = apiR().devicesBuilder();
+  ...
+  156      service.deleteDevice = function(userData) {
+  157          show($ionicLoading);
+  158:         apiR = opengate.api(userData);
+  159          var deviceBuilder = apiR().devicesBuilder();
+  160          deviceBuilder.withEntityKey(crudInfo.device.id).withOrganization(userData.organization);
+  ...
+  172  
+  173      service.sendCrudData = function(crudInfo, userData) {
+  174:         apiR = opengate.api(userData);
+  175          var devices = apiR().newDeviceFinder();
+  176          devices.findByOrganizationAndId(userData.organization, crudInfo.device.id)
+
+/home/katherin/git/ionic-device-emulator/www/js/iot/iot.service.js:
+   68          try {
+   69              show($ionicLoading);
+   70:             apiR = opengate.api(userData);
+   71              var message = apiR().deviceMessageBuilder();
+   72              message.withDataStreamVersion(iotInfo.version);
+
+7 matches across 3 files

@@ -4,10 +4,12 @@ angular.module("starter.iot")
      $http
     ,$cordovaToast
     ,$q
-    ,$ionicLoading) {
+    ,$ionicLoading,
+    opengate) {
 
     userData = {};
     service = {};
+    apiR =  undefined;
 
     function show() {
         $ionicLoading.show({
@@ -63,33 +65,41 @@ angular.module("starter.iot")
 
 
     service.sendIotInfo = function (iotInfo, userData){
+        try {
+            show($ionicLoading);
+            apiR = opengate.api(userData);
+            var message = apiR().deviceMessageBuilder();
+            message.withDataStreamVersion(iotInfo.version);
 
-        var link = "http://" + userData.host + ":" + userData.south_port 
-            + "/v70/devices/" + device.uuid + "/collect/iot";
-
-        var request = {
-            url: link,
-            method: "POST",
-            data: iotInfo,
-            headers: {
-              "X-ApiKey": userData.apikey,
-              "Content-Type": "application/json"
+            for (let i = 0; i < iotInfo.datastreams.length; i++) {
+                let datastream = iotInfo.datastreams[i];
+                let datastreamMessage = apiR().datastreamBuilder();
+                datastreamMessage.withId(datastream.id).withFeed(datastream.feed);
+                for (let j = 0; j < datastream.datapoints.length; j++) {
+                    let datapoint = datastream.datapoints[j];
+                    let datapointsMessage = apiR().datapointsBuilder();
+                    datapointsMessage.withAt(datapoint.at).withValue(datapoint.value);
+                    datastreamMessage.withDatapoint(datapointsMessage);
+                }
+                message.withDataStream(datastreamMessage);
+                $cordovaToast.show(JSON.stringify(message), "short", "center")
             }
-        };
-
-        show($ionicLoading);
-
-        $http(request)
-            .success(function (data, status, headers, config){
-                $cordovaToast.show("Device updated", "short", "center");
+            message.withId(userData.entityKey);
+            message.create()
+            .then(function(data){
+                $cordovaToast.show("created", "short", "center")
             })
-            .error(function (data, status, headers, config){
-                $cordovaToast.show("Cannot update the device", "short", "center");
-                $cordovaToast.show(status, "long", "center");
+            .catch(function(error){
+                $cordovaToast.show("error", "short", "center")
+                $cordovaToast.show(error, "short", "center")
             })
-            .finally(function($ionicLoading) { 
-              hide($ionicLoading);  
+           .finally(function() {
+                
             });
+       }
+       catch(err){
+            hide($ionicLoading);
+       }
     }
 
     return service;
